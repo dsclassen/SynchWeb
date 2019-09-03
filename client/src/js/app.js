@@ -18,6 +18,7 @@ define(['backbone', 'marionette', 'underscore', 'jquery',
     
     'views/header',
     'views/sidebar',
+    'views/welcome',
     'views/dialogregion',
     'views/login',
     
@@ -28,7 +29,7 @@ define(['backbone', 'marionette', 'underscore', 'jquery',
     'config.json',
     'jquery.cookie', 'jquery-ui',
         ],
-function(Backbone, Marionette, _, $, HeaderView, SideBarView, DialogRegion, LoginView, Proposal, Options, utils, config) {
+function(Backbone, Marionette, _, $, HeaderView, SideBarView, WelcomeView, DialogRegion, LoginView, Proposal, Options, utils, config) {
 
   window.app = new Marionette.Application()
 
@@ -138,7 +139,12 @@ function(Backbone, Marionette, _, $, HeaderView, SideBarView, DialogRegion, Logi
   // Override so we can redirect to login when theres no token present
   Backbone.Router.prototype.execute = function(callback, args, name) {
       if (!app.token) {
-        app.login()
+        var queryString = args.toString()
+        // If user accessing home page queryString will be null
+        // See https://backbonejs.org/#Router-execute
+        if (queryString) {
+            app.login()
+        }
         return false
       }
 
@@ -153,6 +159,7 @@ function(Backbone, Marionette, _, $, HeaderView, SideBarView, DialogRegion, Logi
     sidebar: '#sidebar',
     dialog: DialogRegion,
     motd: '#motd',
+    welcome: '#welcome'
   })
     
     
@@ -189,6 +196,9 @@ function(Backbone, Marionette, _, $, HeaderView, SideBarView, DialogRegion, Logi
   
 
   app.login = function(xhr) {
+      // Disable the welcome screen
+      app.welcome.empty()
+
       app.bc.reset([{ title: 'Login' }])
       app.content.show(new LoginView())
   }
@@ -222,7 +232,12 @@ function(Backbone, Marionette, _, $, HeaderView, SideBarView, DialogRegion, Logi
             
         this.sidebarview = new SideBarView()
         app.sidebar.show(this.sidebarview)
-          
+
+        // New info content to be shown on home screen
+        // Disabled once the user logs in (or selects the login button)
+        this.welcomeview = new WelcomeView()
+        app.welcome.show(this.welcomeview)
+
         // Breadcrumbs collection
         if (!app.bc) {  
           app.bc = new Backbone.Collection()

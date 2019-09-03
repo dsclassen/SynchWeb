@@ -26,7 +26,8 @@ define(['marionette', 'backbone', 'templates/header.html'], function(Marionette,
                 IS_STAFF: app.staff,
                 PROPOSAL: app.prop,
                 APIURL: app.apiurl,
-                can: app.user_can
+                can: app.user_can,
+                LOGGED_IN: app.token
             }
         },
         
@@ -36,6 +37,7 @@ define(['marionette', 'backbone', 'templates/header.html'], function(Marionette,
         events: {
             'click a.pull': 'showMenu',
             'click a.logout': 'logOut',
+            'click a.login': 'logIn',
         },
 
         logOut: function(e) {
@@ -58,6 +60,11 @@ define(['marionette', 'backbone', 'templates/header.html'], function(Marionette,
                 window.location.href='https://'+app.options.get('cas_url')+'/cas/logout'
         },
         
+        logIn: function(e) {
+            e.preventDefault()
+            app.login()
+        },
+
         showMenu: function(e) {
             e.preventDefault()
             $('body').toggleClass('active')

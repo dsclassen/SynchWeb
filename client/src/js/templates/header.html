@@ -17,7 +17,11 @@
 <% if (IS_STAFF) { %>
 <a class="icon" href="/cal"><i class="fa fa-calendar fa-2x"></i> <span class="icon-label">Calendar</span></a>
 <% } %>
-<a href="#" title="Logout" class="icon logout"><i class="fa fa-sign-out fa-2x"></i> <span class="icon-label">Logout</span></a>
+<% if (LOGGED_IN) { %>
+    <a href="#" title="Logout" class="icon logout"><i class="fa fa-sign-out fa-2x"></i> <span class="icon-label">Logout</span></a>
+<% } else { %>
+<a href="#" title="Login" class="icon login"><i class="fa fa-sign-in fa-2x"></i> <span class="icon-label">Login</span></a>
+<% } %>
 
 
 <span class="search-mobile">

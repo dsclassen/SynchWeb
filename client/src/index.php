@@ -77,7 +77,10 @@
 
             <div class="cont_wrap">
                 <div id="motd" class="content"></div>
+
                 <div id="container">
+                    <div id="welcome"></div>
+
                     <div class="content">
                     <!--[if lte IE 11]>
                         <div class="content">
