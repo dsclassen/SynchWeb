@@ -1,16 +1,17 @@
-define(['marionette', 'templates/welcome.html'], function(Marionette, template) {
-    
-    return Marionette.ItemView.extend({
-        template: template,
-        templateHelpers: function() {
-            return {
-                LOGGED_IN: app.token
-            }
-        },
-        
-        initialize: function(options) {
-            console.log("Welcome page !!")
-        },        
-    })
-    
-})
+define(['vue',
+        'utils/vuewrapper',
+        'views/components/welcome/welcome.vue',
+        'templates/vue/welcome/welcome.html',
+    ], function(Vue, VueWrapper, Welcome, tmpl) {
+
+        return VueWrapper.extend({
+            vueView: Vue.extend({
+                template: tmpl,
+
+                components: {
+                    'welcome-page': Welcome.default,
+                },
+            })
+        })
+    }
+)

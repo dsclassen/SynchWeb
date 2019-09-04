@@ -235,8 +235,11 @@ function(Backbone, Marionette, _, $, HeaderView, SideBarView, WelcomeView, Dialo
 
         // New info content to be shown on home screen
         // Disabled once the user logs in (or selects the login button)
-        this.welcomeview = new WelcomeView()
-        app.welcome.show(this.welcomeview)
+        if (!app.token) {
+            console.log("Show Welcome Screen")
+            this.welcomeview = new WelcomeView()
+            app.welcome.show(this.welcomeview)
+        }
 
         // Breadcrumbs collection
         if (!app.bc) {  
