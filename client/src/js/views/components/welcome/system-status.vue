@@ -6,7 +6,8 @@
                 <div>
                     <h3>{{system.name}}</h3>
                     <p>{{system.description}}</p>
-                    <p v-bind:class="[{'ok': system.status=='OK'}, {'warning': system.status=='WARNING'}]"> {{system.status}} <i class="fa" v-bind:class="[{'fa-check': system.status=='OK'}, {'fa-exclamation-triangle': system.status=='WARNING'}]"></i></p>
+                    <p>Status Values coming in future SynchWeb release...</p>
+                    <!-- <p v-bind:class="[{'ok': system.status=='OK'}, {'warning': system.status=='WARNING'}]"> {{system.status}} <i class="fa" v-bind:class="[{'fa-check': system.status=='OK'}, {'fa-exclamation-triangle': system.status=='WARNING'}]"></i></p> -->
                 </div>
             </li>
         </ul>
@@ -20,8 +21,8 @@
                 systems: [
                     {name: "ISPyB", description: "ISPyB database cluster", status: "OK"},
                     {name: "Zocalo", description: "Processing messaging service", status: "OK"},
-                    {name: "CAS", description: "Authentication Service", status: "WARNING"},
-                    {name: "GPFS", description: "Filesystem", status: "WARNING"},
+                    {name: "CAS", description: "Authentication Service", status: "OK"},
+                    {name: "GPFS", description: "Filesystem", status: "OK"},
                 ]
             }
         }

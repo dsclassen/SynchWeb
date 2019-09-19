@@ -12,10 +12,10 @@
         data: function() {
             return {
                 notifications: [
-                    "This is a notification",
-                    "Another notification",
-                    "Another feature has been added",
-                    "Vue.js is amazing",
+                    "Example notification 1",
+                    "Example notification 2",
+                    "Example notification 3",
+                    "Example notification 4",
                 ]
             }
         }
