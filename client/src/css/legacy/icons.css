@@ -1,0 +1,40 @@
+
+.fa {
+    vertical-align: middle
+}
+
+.fa.green {
+    color: #03c03c
+}
+
+.fa.blue {
+    color: blue
+}
+
+.fa.red {
+    color: red
+}
+
+.fa.grey {
+    color: grey
+}
+
+.fa.orange {
+    color: orange
+}
+
+a.icon {
+    display: inline-block;
+    padding: 5px;
+    text-decoration: none
+}
+
+a.icon:hover {
+    cursor: pointer;
+    color: #cdcdcd
+}
+
+.fa.icon {
+    font-size: 18px;
+    text-shadow: 0px 2px 3px rgba(150, 150, 150, 0.5)
+}

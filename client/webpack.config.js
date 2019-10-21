@@ -182,7 +182,8 @@ module.exports = {
           // Extract the CSS into separate files
           MiniCssExtractPlugin.loader,
           "css-loader", // translates CSS into CommonJS
-          "sass-loader" // compiles Sass to CSS, using Node Sass by default
+          "postcss-loader",
+          // "sass-loader" // compiles Sass to CSS, using Node Sass by default
         ]
       },
       {

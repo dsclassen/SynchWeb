@@ -1,0 +1,45 @@
+@import "tailwindcss/base";
+/* @import "legacy/mini_reset.css"; */
+
+@import "tailwindcss/components";
+@import "components/typography.css";
+
+/* Maping of breakpoints to tailwind
+
+$breakpoint-vsmall: 400px;
+$breakpoint-small: 800px;
+$breakpoint-medium: 1024px;
+$breakpoint-large: 1280px;
+
+sm: 640px
+md: 768px
+lg: 1024px
+xl: 1280px
+*/
+@import "legacy/base.css";
+
+@import "legacy/icons.css";
+@import "legacy/utility.css";
+
+@import "legacy/plots.css";
+@import "legacy/tables.css";
+
+@import "legacy/header.css";
+@import "legacy/sidebar.css";
+@import "legacy/content.css";
+
+@import "legacy/calendar.css";
+@import "legacy/forms.css";
+@import "legacy/assign.css";
+@import "legacy/nearest.css";
+@import "legacy/mc.css";
+@import "legacy/imaging.css";
+
+/* Third-party */
+@import "vendor/jquery_misc.css";
+@import "vendor/jquery-ui.css";
+@import "vendor/magnific-popup.css";
+@import "vendor/tipTip.css";
+
+
+@import "tailwindcss/utilities";
