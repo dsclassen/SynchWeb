@@ -9,6 +9,11 @@ div.form ul {
     list-style: none
 }
 
+/* Fix issue so that float layout works as expected (list item height determined by child content... */
+div.form ul li {
+    @apply tw-overflow-auto;
+}
+
 div.form ul li.extra {
     display: none
 }
@@ -100,7 +105,8 @@ div.form input.full {
 
 div.form button.submit {
     width: 150px;
-    height: 30px
+    height: 30px;
+    @apply tw-border tw-border-solid tw-rounded;
 }
 
 div.form select[multiple=multiple] {
@@ -366,3 +372,18 @@ table input[type=text] {
 .ui-combobox button.ui-button-icon-only {
     height: 1.8em
 }
+
+.form input,
+.form optgroup,
+.form textarea {
+    font-family: inherit;
+    @apply tw-appearance-none; /* removes default browser style */
+    @apply tw-text-base;
+    @apply tw-px-2;
+    @apply tw-bg-white tw-rounded tw-shadow tw-border tw-border-4 tw-border-orange-400;
+}
+
+.form input:focus, .form textarea:focus {
+    @apply tw-outline-none tw-border-blue-500;
+}
+

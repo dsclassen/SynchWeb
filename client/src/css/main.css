@@ -1,21 +1,11 @@
-@import "tailwindcss/base";
-/* @import "legacy/mini_reset.css"; */
-
-@import "tailwindcss/components";
+/* @import "tailwindcss/base"; */
+/* the tailwind reset is pretty opinionated so restore some key styles for legacy SynchWeb */
+@import "components/normalize.css";
+/* @import "components/reset.css"; */
 @import "components/typography.css";
 
-/* Maping of breakpoints to tailwind
+@import "tailwindcss/components";
 
-$breakpoint-vsmall: 400px;
-$breakpoint-small: 800px;
-$breakpoint-medium: 1024px;
-$breakpoint-large: 1280px;
-
-sm: 640px
-md: 768px
-lg: 1024px
-xl: 1280px
-*/
 @import "legacy/base.css";
 
 @import "legacy/icons.css";
