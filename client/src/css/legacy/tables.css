@@ -1,7 +1,9 @@
 
 
 .table {
-    margin: 10px 0
+    margin: 10px 0;
+    /* Fix required by using tailwind preset  (no default table width) */
+    width: 100%;
 }
 
 .table.table-no-margin {
