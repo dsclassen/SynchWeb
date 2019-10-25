@@ -11,8 +11,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const gitHash = childProcess.execSync('git rev-parse --short HEAD').toString().trim();
 const config = require('./src/js/config.json')
 
-module.exports = {
-  entry: {
+module.exports = (env, argv)  => {
+  return({
+    entry: {
       main: './src/index.js',
   },
   output: {
@@ -180,7 +181,13 @@ module.exports = {
         test: /\.(sa|sc|c)ss$/,
         use: [
           // Extract the CSS into separate files
-          MiniCssExtractPlugin.loader,
+          { 
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              hmr: argv.mode === 'development',
+              // reloadAll: true,
+            }
+          },
           "css-loader", // translates CSS into CommonJS
           "postcss-loader",
           // "sass-loader" // compiles Sass to CSS, using Node Sass by default
@@ -246,5 +253,8 @@ module.exports = {
       filename: '[name].css',
       chunkFilename: '[id].css',
     }),
+    // Allow use to use process.env.NODE_ENV in the build
+    // NODE_ENV should be set in scripts for production builds
+    new webpack.EnvironmentPlugin(['NODE_ENV'])
   ]
-}
+})}

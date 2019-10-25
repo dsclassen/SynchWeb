@@ -28,7 +28,9 @@
 /* Third-party */
 @import "vendor/jquery_misc.css";
 @import "vendor/jquery-ui.css";
+/* purgecss start ignore */
 @import "vendor/magnific-popup.css";
+/* purgecss end ignore */
 @import "vendor/tipTip.css";
 
 
