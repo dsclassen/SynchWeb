@@ -68,12 +68,12 @@ div.form textarea,
 div.form select {
     margin: 0 0 20px 5px
 }
-
-div.form input:not(.ui-combobox-input),
+/* Defining padding for input types at end of file */
+/* div.form input:not(.ui-combobox-input),
 div.form textarea:not(.ui-combobox-input),
 div.form select:not(.ui-combobox-input) {
     padding: 0.1%
-}
+} */
 
 @media (max-width: 800px) {
     div.form input,
@@ -377,10 +377,10 @@ table input[type=text] {
 .form optgroup,
 .form textarea {
     font-family: inherit;
-    @apply tw-appearance-none; /* removes default browser style */
-    @apply tw-text-base;
-    @apply tw-px-2;
-    @apply tw-bg-white tw-rounded tw-shadow tw-border tw-border-4 tw-border-orange-400;
+    @apply tw-p-1;
+    @apply tw-bg-white tw-rounded tw-shadow tw-border;
+    /* Turn on debugging... */
+    /* @apply tw-border-4 tw-border-orange-400; */
 }
 
 .form input:focus, .form textarea:focus {
