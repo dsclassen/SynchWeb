@@ -38,6 +38,7 @@ module.exports = (env, argv)  => {
             proxyReq.setHeader('Authorization', req.headers.authorization);
           }
         },
+        secure: false,
       },
     },
   },
