@@ -28,6 +28,7 @@
 /* Third-party */
 @import "vendor/jquery_misc.css";
 @import "vendor/jquery-ui.css";
+/* Magnific popup adds classes programatically, so we need to whitelist it for purgecss to include it */
 /* purgecss start ignore */
 @import "vendor/magnific-popup.css";
 /* purgecss end ignore */
