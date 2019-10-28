@@ -32,7 +32,5 @@
 /* purgecss start ignore */
 @import "vendor/magnific-popup.css";
 /* purgecss end ignore */
-@import "vendor/tipTip.css";
-
 
 @import "tailwindcss/utilities";
