@@ -12,9 +12,6 @@ module.exports = {
 
     extend: {
       colors: {
-        'test': '#ff0000',
-        'body-background': '#000000',
-        'body-color': '#000000',
         'link-color': '#666666',
         'link-hover-color': '#222222',
 //Sidebar
@@ -49,9 +46,6 @@ module.exports = {
         'content-border': '#e2e2e2',
         'content-fill-color': '#efefef',
         'content-header-color': '#000000',
-        'content-header-border': 'grey',
-        'content-log-background': '#ededed',
-        'content-log-title-color': '#838383',
         'content-search-background': '#cdcdcd',
         'content-highlight': '#ffffff',
         'content-page-background': '#ededed',
@@ -81,22 +75,15 @@ module.exports = {
 // Tables
         'table-header-color': '#f1f1f1',
         'table-header-background': '#474747',
-        'table-header-light-background': '#efefef',
-        'table-header-light-color': '#000000',
         'table-body-background': '#f1f1f1',
         'table-body-background-odd': '#ebebeb',
-        'table-body-color': '#000000',
         'table-row-hover-background': '#dedede',
         'table-footer-background': '#dfdfdf',
-        'table-page-background': '#474747',
         'table-pages-color': '#efefef',
-        'table-pages-active-background': 'transparent',
         'table-pages-active-color': '#474747', // Same as table-page-background',
         'table-pages-disable-color': '#ababab',
 // Plot
         'plot-legend-background': '#dddddd',
-// Editable
-        'editable-hover-background': '#cdcdcd',
       }
     }
   },
