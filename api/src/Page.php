@@ -339,7 +339,7 @@ class Page
             $bbreq = (array)json_decode($this->app->request()->getBody());
             $request = array_merge($_REQUEST, $bbreq);
             $this->request = $request;
-
+            
             $parsed = array();
             
             // Array of arguments
@@ -390,7 +390,10 @@ class Page
                             } else {
                                 if (preg_match('/^'.$v.'$/m', $request[$k])) {
                                     $parsed[$k] = $v == '.*' ? $purifier->purify($request[$k]) : $request[$k];
-                                
+
+                                }
+                                if($k == 'content' && strpos($_SERVER['REQUEST_URI'], 'notebook') > -1){ // ONLY FOR NOTEBOOK CONTENT!!
+                                    $parsed[$k] = $request[$k];
                                 }
                             }
                         }
