@@ -6,6 +6,7 @@ define([], function() {
     
     return {
         menu: {
+            summary: 'Visit Summary',
             dc: 'View All Data',
             visits: 'Visits',
             shipments: 'Shipments',

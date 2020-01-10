@@ -149,6 +149,8 @@ class Shipment extends Page
 
                               array('/dewars/tracking(/:DEWARID)', 'get', '_get_dewar_tracking'),
 
+                              array('/dewars/summary(/:VISIT)', 'get', '_dewar_summary'),
+
 
 
                               array('/containers(/:cid)(/did/:did)', 'get', '_get_all_containers'),
@@ -2415,5 +2417,28 @@ class Shipment extends Page
             $email->send($cont['EMAILADDRESS']);
 
             $this->db->pq("INSERT INTO containerhistory (status,containerid) VALUES (:1, :2)", array('notify_email', $cont['CONTAINERID']));
+        }
+
+
+
+        function _dewar_summary(){
+            if (!$this->has_arg('visit')) $this->_error('No visit specified');
+
+            $prop = $this->arg('prop');
+            $propNumber = substr($prop, 2, strlen($prop));
+            $propCode = substr($prop, 0, 2);
+            $visit = $this->arg('visit');
+            $vis = substr($visit, strripos($visit,'-')+1, sizeof($visit));
+
+            $dewars = $this->db->pq("SELECT d.code, IFNULL(dth.storageLocation, 'unknown') AS STORAGELOCATION, dth.arrivalDate 
+                                FROM Dewar d 
+                                LEFT OUTER JOIN DewarTransportHistory dth ON d.dewarId = dth.dewarId 
+                                INNER JOIN Shipping s ON d.shippingId = s.shippingId 
+                                INNER JOIN Proposal p ON s.proposalId = p.proposalId 
+                                INNER JOIN BLSession bls ON bls.proposalId = p.proposalId 
+                                WHERE p.proposalCode = :1 AND p.proposalNumber = :2 AND bls.visit_number = :3",
+                                array($propCode, $propNumber, $vis));
+
+            return $this->_output($dewars);
         }
     }

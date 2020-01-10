@@ -199,6 +199,7 @@ function(Backbone, Marionette, _, $, HeaderView, SideBarView, DialogRegion, Logi
   */
   app.addInitializer(function(options){
     require([
+        'modules/summary/router',
         'modules/dc/router',
         'modules/proposal/router',
         'modules/shipment/router',

@@ -57,6 +57,8 @@ class DC extends Page
 
                               array('/apms', 'post', '_ap_message_status'),
                               array('/apm', 'get', '_ap_message'),
+
+                              array('/summary(/:visit)', 'get', '_dc_summary'),
                             );
 
 
@@ -1846,5 +1848,58 @@ class DC extends Page
             }
             
             $this->_output(array($data));
+        }
+
+
+        # ------------------------------------------------------------------------
+        # Get stats for visit summary
+        function _dc_summary(){
+            if (!$this->has_arg('visit')) $this->_error('No visit specified');
+
+            $prop = $this->arg('prop');
+            $propNumber = substr($prop, 2, strlen($prop));
+            $propCode = substr($prop, 0, 2);
+            $visit = $this->arg('visit');
+            $vis = substr($visit, strripos($visit,'-')+1, sizeof($visit));
+
+            // Multiple sub queries to get counts from DataCollection, DataCollectionGroup and ProcessingJob tables
+            // I REALLY dislike that the query builder forces me to provide all args three times... :(
+            $dcCounts = $this->db->pq("SELECT 
+                                    (SELECT COUNT(*) 
+                                    FROM datacollection 
+                                    WHERE datacollectiongroupid IN 
+                                        (SELECT datacollectiongroupid 
+                                        FROM datacollectiongroup 
+                                        WHERE sessionid = 
+                                            (SELECT sessionid 
+                                            FROM blsession s INNER JOIN proposal p ON s.proposalid = p.proposalid 
+                                            WHERE p.proposalcode = :1 
+                                            AND p.proposalnumber = :2 
+                                            AND s.visit_number = :3))) AS DCS, 
+                                    (SELECT COUNT(*) 
+                                    FROM datacollectiongroup 
+                                    WHERE sessionid = 
+                                        (SELECT sessionid 
+                                        FROM blsession s INNER JOIN proposal p ON s.proposalid = p.proposalid 
+                                        WHERE p.proposalcode = :4 
+                                        AND p.proposalnumber = :5 
+                                        AND s.visit_number = :6)) AS DCGS,
+                                    (SELECT COUNT(*) 
+                                    FROM processingjob 
+                                    WHERE datacollectionid IN 
+                                        (SELECT datacollectionid 
+                                        FROM datacollection 
+                                        WHERE datacollectiongroupid IN 
+                                            (SELECT datacollectiongroupid 
+                                            FROM datacollectiongroup 
+                                            WHERE sessionid = 
+                                                (SELECT sessionid 
+                                                FROM blsession s INNER JOIN proposal p on s.proposalid = p.proposalid 
+                                                WHERE p.proposalcode = :7 
+                                                AND p.proposalnumber = :8 
+                                                AND s.visit_number = :9)))) AS APS",
+                                    array($propCode, $propNumber, $vis, $propCode, $propNumber, $vis, $propCode, $propNumber, $vis));
+
+            return $this->_output($dcCounts);
         }
 }
