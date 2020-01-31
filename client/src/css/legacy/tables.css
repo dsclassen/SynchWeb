@@ -1,0 +1,995 @@
+
+
+.table {
+    margin: 10px 0;
+    /* Fix required by using tailwind preset  (no default table width) */
+    width: 100%;
+}
+
+.table.table-no-margin {
+    margin: 0
+}
+
+.table.right.tracking {
+    margin-left: 50%
+}
+
+.table table {
+    width: 100%
+}
+
+.table table td,
+.table table th {
+    padding: 5px
+}
+
+.table table td.extra,
+.table table th.extra,
+.table table th.xtal,
+.table table td.xtal,
+.table table th.non-xtal,
+.table table td.non-xtal,
+.table table th.auto,
+.table table td.auto {
+    display: none
+}
+
+.table table td.extra.show,
+.table table th.extra.show,
+.table table th.xtal.show,
+.table table td.xtal.show,
+.table table th.non-xtal.show,
+.table table td.non-xtal.show,
+.table table th.auto.show,
+.table table td.auto.show {
+    display: table-cell
+}
+
+@media (max-width: 400px) {
+    .table table td.extra.show,
+    .table table th.extra.show,
+    .table table th.xtal.show,
+    .table table td.xtal.show,
+    .table table th.non-xtal.show,
+    .table table td.non-xtal.show,
+    .table table th.auto.show,
+    .table table td.auto.show {
+        display: block
+    }
+}
+
+.table table thead th,
+.table table thead th a {
+    text-align: center;
+    background: #474747;
+    color: #f1f1f1
+}
+
+.table table thead th.editable,
+.table table thead th a.editable {
+    border-radius: 0;
+    padding-right: 0
+}
+
+.table table thead th.editable:hover,
+.table table thead th a.editable:hover {
+    background-image: none;
+    background: #474747
+}
+
+.table table thead th.sorting_asc,
+.table table thead th a.sorting_asc {
+    background: #474747 url("images/sort_asc.png") no-repeat right center
+}
+
+.table table thead th.sorting_desc,
+.table table thead th a.sorting_desc {
+    background: #474747 url("images/sort_desc.png") no-repeat right center
+}
+
+.table table thead th.sorting,
+.table table thead th a.sorting {
+    background: #474747 url("images/sort_both.png") no-repeat right center
+}
+
+.table table tbody th {
+    text-align: left;
+    background: #474747
+}
+
+.table table tbody td {
+    text-align: center;
+    background: #f1f1f1
+}
+
+.table table tbody td.editable {
+    border-radius: 0
+}
+
+@media (max-width: 800px) {
+    .table table tbody td.editable {
+        display: table-cell
+    }
+}
+
+@media (max-width: 400px) {
+    .table table tbody td.editable {
+        display: block
+    }
+}
+
+.table table tbody td.editable:hover {
+    padding-right: 2.5%;
+    background: #cdcdcd url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAANCAQAAAAOR/aSAAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfdDAQPNicPrLwkAAAAWElEQVQY063PsQ3AIAxE0R9WMoOEbRjB22QRMxNpgmRQTMWVpyf5DKdyrYUKRq7Nd+mHgM1tmkltFCCHl1W06w0q4SYVjMKz7nFoRz60JwN1gIj470JyMi8YZRwyixNLhAAAAABJRU5ErkJggg==') no-repeat right !important
+}
+
+.table table tbody td span.active {
+    background: #82d180
+}
+
+.table table tbody td span.inactive {
+    background: #f26c4f
+}
+
+.table table tbody td span.minor {
+    background: #ff0
+}
+
+.table table tbody tr .deactivate {
+    display: none
+}
+
+.table table tbody tr.inactive td {
+    background: #f26c4f !important
+}
+
+.table table tbody tr.minor td {
+    background: #ff0 !important
+}
+
+.table table tbody tr.active td,
+.table table tbody tr.active:nth-child(odd) td {
+    background: #82d180
+}
+
+.table table tbody tr.active td .deactivate,
+.table table tbody tr.active:nth-child(odd) td .deactivate {
+    display: inline
+}
+
+.table table tbody tr:nth-child(odd) td,
+.table table tbody tr.odd td {
+    background: #ebebeb
+}
+
+.table table tbody td span.sort {
+    display: none
+}
+
+.table table tfoot th {
+    text-align: left
+}
+
+.table table tfoot td {
+    background: #dfdfdf;
+    text-align: center;
+    font-weight: bold
+}
+
+.table table.hover-row tr.selected td,
+.table table.imagers tr.selected td,
+.table table.inspections tr.selected td,
+.table table.subsamples tr.selected td,
+.table table.schedules tr.selected td,
+.table table.groups tr.selected td,
+.table table.proposals tr.selected td,
+.table table.dewars tr.selected td,
+.table table.ehc tr.selected td,
+.table table.blended_table tr.selected td,
+.table table.integrated tr.selected td,
+.table table.projects tr.selected td,
+.table table.shipments tr.selected td,
+.table table.visits tr.selected td,
+.table table.contacts tr.selected td,
+.table table.proteins tr.selected td,
+.table table.samples tr.selected td,
+.table table.peaks tr.selected td,
+.table table.containers tr.selected td,
+.table table.systems tr.selected td,
+.table table.components tr.selected td,
+.table table.hover-row tr:hover td,
+.table table.imagers tr:hover td,
+.table table.inspections tr:hover td,
+.table table.subsamples tr:hover td,
+.table table.schedules tr:hover td,
+.table table.groups tr:hover td,
+.table table.proposals tr:hover td,
+.table table.dewars tr:hover td,
+.table table.ehc tr:hover td,
+.table table.blended_table tr:hover td,
+.table table.integrated tr:hover td,
+.table table.projects tr:hover td,
+.table table.shipments tr:hover td,
+.table table.visits tr:hover td,
+.table table.contacts tr:hover td,
+.table table.proteins tr:hover td,
+.table table.samples tr:hover td,
+.table table.peaks tr:hover td,
+.table table.containers tr:hover td,
+.table table.systems tr:hover td,
+.table table.components tr:hover td {
+    cursor: pointer;
+    background: #dedede
+}
+
+.table table.no-wrap-last tr td:last-child,
+.table table.samples tr td:last-child,
+.table table.dewars tr td:last-child,
+.table table.visits tr td:last-child,
+.table table.systems tr td:last-child,
+.table table.components tr td:last-child {
+    white-space: nowrap
+}
+
+.table.tw,
+.table.history {
+    overflow-x: auto
+}
+
+@media (max-width: 800px) {
+    .table table.faults th:nth-child(4),
+    .table table.faults th:nth-child(5),
+    .table table.faults th:nth-child(6),
+    .table table.faults th:nth-child(7),
+    .table table.faults th:nth-child(8),
+    .table table.faults td:nth-child(4),
+    .table table.faults td:nth-child(5),
+    .table table.faults td:nth-child(6),
+    .table table.faults td:nth-child(7),
+    .table table.faults td:nth-child(8) {
+        display: none
+    }
+}
+
+.table table.samples td:nth-child(2),
+.table table.samples td:nth-child(3),
+.table table.samples td:nth-child(11) {
+    white-space: nowrap
+}
+
+.table table.samples td:nth-child(12) {
+    width: 16%
+}
+
+.table table.samples td:nth-child(12) input {
+    width: 25%
+}
+
+.table table.samples td:nth-child(11) {
+    width: 10%
+}
+
+.table table.samples td:nth-child(11) input {
+    width: 40%
+}
+
+.table table.samples input[name=ABUNDANCE] {
+    width: auto
+}
+
+.table table.samples .components input[type="text"] {
+    width: 30%
+}
+
+.table table.samples .components input[name=COMPONENTID] {
+    width: 60%
+}
+
+.table table.samples .components li {
+    white-space: nowrap
+}
+
+@media (max-width: 400px) {
+    .table table.samples td:nth-child(11),
+    .table table.samples td:nth-child(12) {
+        width: auto
+    }
+}
+
+.table table.subsamples table td {
+    text-align: left
+}
+
+.table table.subsamples table td input {
+    width: auto
+}
+
+.table div.dataTables_wrapper {
+    background-color: #f4f4f4
+}
+
+.table a.paginate_button,
+.table a.paginate_active {
+    display: inline-block;
+    background-color: #474747;
+    color: #efefef;
+    padding: 2px 6px;
+    margin-left: 2px;
+    cursor: pointer;
+    *cursor: hand
+}
+
+.table a.paginate_active {
+    background-color: transparent;
+    border: 1px solid black;
+    color: #474747
+}
+
+.table a.paginate_button_disabled {
+    color: #ababab
+}
+
+.table .paging_full_numbers a:active {
+    outline: none
+}
+
+.table .paging_full_numbers a:hover {
+    text-decoration: none
+}
+
+.table div.dataTables_paginate span>a {
+    width: 15px;
+    text-align: center
+}
+
+.table div.dataTables_info {
+    padding: 9px 6px 6px 6px
+}
+
+.table div.dataTables_length {
+    float: left
+}
+
+.table div.dataTables_filter {
+    float: right
+}
+
+.table div.dataTables_info {
+    float: left
+}
+
+.table div.dataTables_paginate {
+    float: right
+}
+
+.table div.dataTables_length,
+.table div.dataTables_filter,
+.table div.dataTables_paginate,
+.table div.dataTables_info {
+    padding: 6px
+}
+
+.table div.dataTables_wrapper {
+    *zoom: 1
+}
+
+.table div.dataTables_wrapper:before,
+.table div.dataTables_wrapper:after {
+    content: " ";
+    display: table
+}
+
+.table div.dataTables_wrapper:after {
+    clear: both
+}
+
+@media (max-width: 800px) {
+    .table div.dataTables_filter {
+        display: none
+    }
+}
+
+.history .table {
+    margin-top: 0
+}
+
+html[xmlns] .dataTables_wrapper {
+    display: block
+}
+
+* html .dataTables_wrapper {
+    height: 1%
+}
+
+.reflow .top,
+.data_collection .holder>div>table.reflow .top,
+.data_collection .holder>div .ui-tabs-panel table.reflow .top {
+    display: none
+}
+
+@media (max-width: 400px) {
+    .reflow .top,
+    .data_collection .holder>div>table.reflow .top,
+    .data_collection .holder>div .ui-tabs-panel table.reflow .top {
+        display: inline-block
+    }
+    .reflow tr.innerShell,
+    .data_collection .holder>div>table.reflow tr.innerShell,
+    .data_collection .holder>div .ui-tabs-panel table.reflow tr.innerShell {
+        display: none
+    }
+    .reflow thead,
+    .data_collection .holder>div>table.reflow thead,
+    .data_collection .holder>div .ui-tabs-panel table.reflow thead,
+    .reflow tbody,
+    .data_collection .holder>div>table.reflow tbody,
+    .data_collection .holder>div .ui-tabs-panel table.reflow tbody,
+    .reflow th,
+    .data_collection .holder>div>table.reflow th,
+    .data_collection .holder>div .ui-tabs-panel table.reflow th,
+    .reflow td,
+    .data_collection .holder>div>table.reflow td,
+    .data_collection .holder>div .ui-tabs-panel table.reflow td,
+    .reflow tr,
+    .data_collection .holder>div>table.reflow tr,
+    .data_collection .holder>div .ui-tabs-panel table.reflow tr {
+        display: block
+    }
+    .reflow thead tr,
+    .data_collection .holder>div>table.reflow thead tr,
+    .data_collection .holder>div .ui-tabs-panel table.reflow thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px
+    }
+    .reflow tr,
+    .data_collection .holder>div>table.reflow tr,
+    .data_collection .holder>div .ui-tabs-panel table.reflow tr {
+        border: 1px solid #ccc;
+        margin-bottom: 5px;
+        border-radius: 5px
+    }
+    .reflow tbody td,
+    .data_collection .holder>div>table.reflow tbody td,
+    .data_collection .holder>div .ui-tabs-panel table.reflow tbody td {
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+        min-height: 14px
+    }
+    .reflow td:last-child,
+    .data_collection .holder>div>table.reflow td:last-child,
+    .data_collection .holder>div .ui-tabs-panel table.reflow td:last-child {
+        border-bottom: none
+    }
+    .reflow td:before,
+    .data_collection .holder>div>table.reflow td:before,
+    .data_collection .holder>div .ui-tabs-panel table.reflow td:before {
+        position: absolute;
+        top: 6px;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        font-weight: 700
+    }
+    .reflow.cell td:nth-of-type(1):before,
+    .data_collection .holder>div>div>table.cell.reflow td:nth-of-type(1):before,
+    .data_collection .holder>div .ui-tabs-panel table.cell.reflow td:nth-of-type(1):before {
+        content: "Space Group"
+    }
+    .reflow.cell td:nth-of-type(2):before,
+    .data_collection .holder>div>div>table.cell.reflow td:nth-of-type(2):before,
+    .data_collection .holder>div .ui-tabs-panel table.cell.reflow td:nth-of-type(2):before {
+        content: "A"
+    }
+    .reflow.cell td:nth-of-type(3):before,
+    .data_collection .holder>div>div>table.cell.reflow td:nth-of-type(3):before,
+    .data_collection .holder>div .ui-tabs-panel table.cell.reflow td:nth-of-type(3):before {
+        content: "B"
+    }
+    .reflow.cell td:nth-of-type(4):before,
+    .data_collection .holder>div>div>table.cell.reflow td:nth-of-type(4):before,
+    .data_collection .holder>div .ui-tabs-panel table.cell.reflow td:nth-of-type(4):before {
+        content: "C"
+    }
+    .reflow.cell td:nth-of-type(5):before,
+    .data_collection .holder>div>div>table.cell.reflow td:nth-of-type(5):before,
+    .data_collection .holder>div .ui-tabs-panel table.cell.reflow td:nth-of-type(5):before {
+        content: "\3B1"
+    }
+    .reflow.cell td:nth-of-type(6):before,
+    .data_collection .holder>div>div>table.cell.reflow td:nth-of-type(6):before,
+    .data_collection .holder>div .ui-tabs-panel table.cell.reflow td:nth-of-type(6):before {
+        content: "\3B2"
+    }
+    .reflow.cell td:nth-of-type(7):before,
+    .data_collection .holder>div>div>table.cell.reflow td:nth-of-type(7):before,
+    .data_collection .holder>div .ui-tabs-panel table.cell.reflow td:nth-of-type(7):before {
+        content: "\3B3"
+    }
+    .reflow.shell td:nth-of-type(1):before,
+    .data_collection .holder>div>div>table.shell.reflow td:nth-of-type(1):before,
+    .data_collection .holder>div .ui-tabs-panel table.shell.reflow td:nth-of-type(1):before {
+        content: "Shell"
+    }
+    .reflow.shell td:nth-of-type(2):before,
+    .data_collection .holder>div>div>table.shell.reflow td:nth-of-type(2):before,
+    .data_collection .holder>div .ui-tabs-panel table.shell.reflow td:nth-of-type(2):before {
+        content: "Observations"
+    }
+    .reflow.shell td:nth-of-type(3):before,
+    .data_collection .holder>div>div>table.shell.reflow td:nth-of-type(3):before,
+    .data_collection .holder>div .ui-tabs-panel table.shell.reflow td:nth-of-type(3):before {
+        content: "Unique"
+    }
+    .reflow.shell td:nth-of-type(4):before,
+    .data_collection .holder>div>div>table.shell.reflow td:nth-of-type(4):before,
+    .data_collection .holder>div .ui-tabs-panel table.shell.reflow td:nth-of-type(4):before {
+        content: "Resolution"
+    }
+    .reflow.shell td:nth-of-type(5):before,
+    .data_collection .holder>div>div>table.shell.reflow td:nth-of-type(5):before,
+    .data_collection .holder>div .ui-tabs-panel table.shell.reflow td:nth-of-type(5):before {
+        content: "Rmeas"
+    }
+    .reflow.shell td:nth-of-type(6):before,
+    .data_collection .holder>div>div>table.shell.reflow td:nth-of-type(6):before,
+    .data_collection .holder>div .ui-tabs-panel table.shell.reflow td:nth-of-type(6):before {
+        content: "I/sig(I)"
+    }
+    .reflow.shell td:nth-of-type(7):before,
+    .data_collection .holder>div>div>table.shell.reflow td:nth-of-type(7):before,
+    .data_collection .holder>div .ui-tabs-panel table.shell.reflow td:nth-of-type(7):before {
+        content: "Completeness"
+    }
+    .reflow.shell td:nth-of-type(8):before,
+    .data_collection .holder>div>div>table.shell.reflow td:nth-of-type(8):before,
+    .data_collection .holder>div .ui-tabs-panel table.shell.reflow td:nth-of-type(8):before {
+        content: "CC Half"
+    }
+    .reflow.shell td:nth-of-type(9):before,
+    .data_collection .holder>div>div>table.shell.reflow td:nth-of-type(9):before,
+    .data_collection .holder>div .ui-tabs-panel table.shell.reflow td:nth-of-type(9):before {
+        content: "Multiplicity"
+    }
+    .reflow.shell td:nth-of-type(10):before,
+    .data_collection .holder>div>div>table.shell.reflow td:nth-of-type(10):before,
+    .data_collection .holder>div .ui-tabs-panel table.shell.reflow td:nth-of-type(10):before {
+        content: "Anom Completeness"
+    }
+    .reflow.shell td:nth-of-type(11):before,
+    .data_collection .holder>div>div>table.shell.reflow td:nth-of-type(11):before,
+    .data_collection .holder>div .ui-tabs-panel table.shell.reflow td:nth-of-type(11):before {
+        content: "Anom Multiplicity"
+    }
+    .reflow.shell td:nth-of-type(12):before,
+    .data_collection .holder>div>div>table.shell.reflow td:nth-of-type(12):before,
+    .data_collection .holder>div .ui-tabs-panel table.shell.reflow td:nth-of-type(12):before {
+        content: "CC Anom"
+    }
+    .reflow.strat td:nth-of-type(1):before,
+    .data_collection .holder>div>div>table.strat.reflow td:nth-of-type(1):before,
+    .data_collection .holder>div .ui-tabs-panel table.strat.reflow td:nth-of-type(1):before {
+        content: "Strategy"
+    }
+    .reflow.strat td:nth-of-type(2):before,
+    .data_collection .holder>div>div>table.strat.reflow td:nth-of-type(2):before,
+    .data_collection .holder>div .ui-tabs-panel table.strat.reflow td:nth-of-type(2):before {
+        content: "Description"
+    }
+    .reflow.strat td:nth-of-type(3):before,
+    .data_collection .holder>div>div>table.strat.reflow td:nth-of-type(3):before,
+    .data_collection .holder>div .ui-tabs-panel table.strat.reflow td:nth-of-type(3):before {
+        content: "\3A9 Start"
+    }
+    .reflow.strat td:nth-of-type(4):before,
+    .data_collection .holder>div>div>table.strat.reflow td:nth-of-type(4):before,
+    .data_collection .holder>div .ui-tabs-panel table.strat.reflow td:nth-of-type(4):before {
+        content: "\3A9 Oscillation"
+    }
+    .reflow.strat td:nth-of-type(5):before,
+    .data_collection .holder>div>div>table.strat.reflow td:nth-of-type(5):before,
+    .data_collection .holder>div .ui-tabs-panel table.strat.reflow td:nth-of-type(5):before {
+        content: "Resolution"
+    }
+    .reflow.strat td:nth-of-type(6):before,
+    .data_collection .holder>div>div>table.strat.reflow td:nth-of-type(6):before,
+    .data_collection .holder>div .ui-tabs-panel table.strat.reflow td:nth-of-type(6):before {
+        content: "Ranking Resolution"
+    }
+    .reflow.strat td:nth-of-type(7):before,
+    .data_collection .holder>div>div>table.strat.reflow td:nth-of-type(7):before,
+    .data_collection .holder>div .ui-tabs-panel table.strat.reflow td:nth-of-type(7):before {
+        content: "Relative Transmission"
+    }
+    .reflow.strat td:nth-of-type(8):before,
+    .data_collection .holder>div>div>table.strat.reflow td:nth-of-type(8):before,
+    .data_collection .holder>div .ui-tabs-panel table.strat.reflow td:nth-of-type(8):before {
+        content: "Absolute Transmission"
+    }
+    .reflow.strat td:nth-of-type(9):before,
+    .data_collection .holder>div>div>table.strat.reflow td:nth-of-type(9):before,
+    .data_collection .holder>div .ui-tabs-panel table.strat.reflow td:nth-of-type(9):before {
+        content: "Exposure"
+    }
+    .reflow.strat td:nth-of-type(10):before,
+    .data_collection .holder>div>div>table.strat.reflow td:nth-of-type(10):before,
+    .data_collection .holder>div .ui-tabs-panel table.strat.reflow td:nth-of-type(10):before {
+        content: "No. of Images"
+    }
+    .reflow.strat td:first-child,
+    .data_collection .holder>div>table.strat.reflow td:first-child,
+    .data_collection .holder>div .ui-tabs-panel table.strat.reflow td:first-child {
+        background: #ebebeb
+    }
+    .reflow.dewars td,
+    .data_collection .holder>div>table.dewars.reflow td,
+    .data_collection .holder>div .ui-tabs-panel table.dewars.reflow td {
+        text-align: left
+    }
+    .reflow.dewars td:nth-of-type(1):before,
+    .data_collection .holder>div>div>table.dewars.reflow td:nth-of-type(1):before,
+    .data_collection .holder>div .ui-tabs-panel table.dewars.reflow td:nth-of-type(1):before {
+        content: "Name"
+    }
+    .reflow.dewars td:nth-of-type(2):before,
+    .data_collection .holder>div>div>table.dewars.reflow td:nth-of-type(2):before,
+    .data_collection .holder>div .ui-tabs-panel table.dewars.reflow td:nth-of-type(2):before {
+        content: "Barcode"
+    }
+    .reflow.dewars td:nth-of-type(3):before,
+    .data_collection .holder>div>div>table.dewars.reflow td:nth-of-type(3):before,
+    .data_collection .holder>div .ui-tabs-panel table.dewars.reflow td:nth-of-type(3):before {
+        content: "Facility Code"
+    }
+    .reflow.dewars td:nth-of-type(4):before,
+    .data_collection .holder>div>div>table.dewars.reflow td:nth-of-type(4):before,
+    .data_collection .holder>div .ui-tabs-panel table.dewars.reflow td:nth-of-type(4):before {
+        content: "First Experiment"
+    }
+    .reflow.dewars td:nth-of-type(5):before,
+    .data_collection .holder>div>div>table.dewars.reflow td:nth-of-type(5):before,
+    .data_collection .holder>div .ui-tabs-panel table.dewars.reflow td:nth-of-type(5):before {
+        content: "Tracking # to"
+    }
+    .reflow.dewars td:nth-of-type(6):before,
+    .data_collection .holder>div>div>table.dewars.reflow td:nth-of-type(6):before,
+    .data_collection .holder>div .ui-tabs-panel table.dewars.reflow td:nth-of-type(6):before {
+        content: "Tracking # from"
+    }
+    .reflow.dewars td:nth-of-type(7):before,
+    .data_collection .holder>div>div>table.dewars.reflow td:nth-of-type(7):before,
+    .data_collection .holder>div .ui-tabs-panel table.dewars.reflow td:nth-of-type(7):before {
+        content: "Status"
+    }
+    .reflow.dewars td:nth-of-type(8):before,
+    .data_collection .holder>div>div>table.dewars.reflow td:nth-of-type(8):before,
+    .data_collection .holder>div .ui-tabs-panel table.dewars.reflow td:nth-of-type(8):before {
+        content: "Location"
+    }
+    .reflow.dewars td:nth-of-type(9):before,
+    .data_collection .holder>div>div>table.dewars.reflow td:nth-of-type(9):before,
+    .data_collection .holder>div .ui-tabs-panel table.dewars.reflow td:nth-of-type(9):before {
+        content: "Containers"
+    }
+    .reflow.dewars td:nth-of-type(10):before,
+    .data_collection .holder>div>div>table.dewars.reflow td:nth-of-type(10):before,
+    .data_collection .holder>div .ui-tabs-panel table.dewars.reflow td:nth-of-type(10):before {
+        content: "Add Container"
+    }
+    .reflow.dewars tr.new td:nth-of-type(10):before {
+        content: "Save Dewar"
+    }
+    .reflow.samples td,
+    .data_collection .holder>div>table.samples.reflow td,
+    .data_collection .holder>div .ui-tabs-panel table.samples.reflow td {
+        text-align: left;
+        padding-left: 35%
+    }
+    .reflow.samples td:before,
+    .data_collection .holder>div>table.samples.reflow td:before,
+    .data_collection .holder>div .ui-tabs-panel table.samples.reflow td:before {
+        width: 30%
+    }
+    .reflow.samples td input[type=text],
+    .data_collection .holder>div>div>table.samples.reflow td input[type=text],
+    .data_collection .holder>div .ui-tabs-panel table.samples.reflow td input[type=text] {
+        width: auto
+    }
+    .reflow.samples td .ui-combobox input.ui-combobox-input {
+        padding: 0;
+        width: 90%
+    }
+    .reflow.samples td .ui-combobox button.ui-button-icon-only {
+        top: -3px;
+        height: 2.2em
+    }
+    .reflow.samples td:nth-of-type(1):before,
+    .data_collection .holder>div>div>table.samples.reflow td:nth-of-type(1):before,
+    .data_collection .holder>div .ui-tabs-panel table.samples.reflow td:nth-of-type(1):before {
+        content: "Location"
+    }
+    .reflow.samples td:nth-of-type(2):before,
+    .data_collection .holder>div>div>table.samples.reflow td:nth-of-type(2):before,
+    .data_collection .holder>div .ui-tabs-panel table.samples.reflow td:nth-of-type(2):before {
+        content: "Protein Acronym"
+    }
+    .reflow.samples td:nth-of-type(3):before,
+    .data_collection .holder>div>div>table.samples.reflow td:nth-of-type(3):before,
+    .data_collection .holder>div .ui-tabs-panel table.samples.reflow td:nth-of-type(3):before {
+        content: "Abundance"
+    }
+    .reflow.samples td:nth-of-type(4):before,
+    .data_collection .holder>div>div>table.samples.reflow td:nth-of-type(4):before,
+    .data_collection .holder>div .ui-tabs-panel table.samples.reflow td:nth-of-type(4):before {
+        content: "Components"
+    }
+    .reflow.samples td:nth-of-type(5):before,
+    .data_collection .holder>div>div>table.samples.reflow td:nth-of-type(5):before,
+    .data_collection .holder>div .ui-tabs-panel table.samples.reflow td:nth-of-type(5):before {
+        content: "Sample Name"
+    }
+    .reflow.samples td:nth-of-type(6):before,
+    .data_collection .holder>div>div>table.samples.reflow td:nth-of-type(6):before,
+    .data_collection .holder>div .ui-tabs-panel table.samples.reflow td:nth-of-type(6):before {
+        content: "Spacegroup"
+    }
+    .reflow.samples td:nth-of-type(7):before,
+    .data_collection .holder>div>div>table.samples.reflow td:nth-of-type(7):before,
+    .data_collection .holder>div .ui-tabs-panel table.samples.reflow td:nth-of-type(7):before {
+        content: "Barcode"
+    }
+    .reflow.samples td:nth-of-type(8):before,
+    .data_collection .holder>div>div>table.samples.reflow td:nth-of-type(8):before,
+    .data_collection .holder>div .ui-tabs-panel table.samples.reflow td:nth-of-type(8):before {
+        content: "Volume"
+    }
+    .reflow.samples td:nth-of-type(9):before,
+    .data_collection .holder>div>div>table.samples.reflow td:nth-of-type(9):before,
+    .data_collection .holder>div .ui-tabs-panel table.samples.reflow td:nth-of-type(9):before {
+        content: "Comment"
+    }
+    .reflow.samples td:nth-of-type(10):before,
+    .data_collection .holder>div>div>table.samples.reflow td:nth-of-type(10):before,
+    .data_collection .holder>div .ui-tabs-panel table.samples.reflow td:nth-of-type(10):before {
+        content: "Required Resolution"
+    }
+    .reflow.samples td:nth-of-type(11):before,
+    .data_collection .holder>div>div>table.samples.reflow td:nth-of-type(11):before,
+    .data_collection .holder>div .ui-tabs-panel table.samples.reflow td:nth-of-type(11):before {
+        content: "Anom Scatterer"
+    }
+    .reflow.samples td:nth-of-type(12):before,
+    .data_collection .holder>div>div>table.samples.reflow td:nth-of-type(12):before,
+    .data_collection .holder>div .ui-tabs-panel table.samples.reflow td:nth-of-type(12):before {
+        content: "Unit Cell"
+    }
+    .reflow.samples.view td:nth-of-type(7):before {
+        content: "Data Collected"
+    }
+    .reflow.samples.view td:nth-of-type(8):before {
+        content: "Edit / Del / View"
+    }
+    .reflow.summary td:nth-of-type(1):before,
+    .data_collection .holder>div>div>table.summary.reflow td:nth-of-type(1):before,
+    .data_collection .holder>div .ui-tabs-panel table.summary.reflow td:nth-of-type(1):before {
+        content: "Prefix"
+    }
+    .reflow.summary td:nth-of-type(2):before,
+    .data_collection .holder>div>div>table.summary.reflow td:nth-of-type(2):before,
+    .data_collection .holder>div .ui-tabs-panel table.summary.reflow td:nth-of-type(2):before {
+        content: "Sample"
+    }
+    .reflow.summary td:nth-of-type(3):before,
+    .data_collection .holder>div>div>table.summary.reflow td:nth-of-type(3):before,
+    .data_collection .holder>div .ui-tabs-panel table.summary.reflow td:nth-of-type(3):before {
+        content: "Date"
+    }
+    .reflow.summary td:nth-of-type(4):before,
+    .data_collection .holder>div>div>table.summary.reflow td:nth-of-type(4):before,
+    .data_collection .holder>div .ui-tabs-panel table.summary.reflow td:nth-of-type(4):before {
+        content: "No. Images"
+    }
+    .reflow.summary td:nth-of-type(5):before,
+    .data_collection .holder>div>div>table.summary.reflow td:nth-of-type(5):before,
+    .data_collection .holder>div .ui-tabs-panel table.summary.reflow td:nth-of-type(5):before {
+        content: "\3A9 Oscillation"
+    }
+    .reflow.summary td:nth-of-type(6):before,
+    .data_collection .holder>div>div>table.summary.reflow td:nth-of-type(6):before,
+    .data_collection .holder>div .ui-tabs-panel table.summary.reflow td:nth-of-type(6):before {
+        content: "Exposure Time"
+    }
+    .reflow.summary td:nth-of-type(7):before,
+    .data_collection .holder>div>div>table.summary.reflow td:nth-of-type(7):before,
+    .data_collection .holder>div .ui-tabs-panel table.summary.reflow td:nth-of-type(7):before {
+        content: "Transmission"
+    }
+    .reflow.summary td:nth-of-type(8):before,
+    .data_collection .holder>div>div>table.summary.reflow td:nth-of-type(8):before,
+    .data_collection .holder>div .ui-tabs-panel table.summary.reflow td:nth-of-type(8):before {
+        content: "Spacegroup"
+    }
+    .reflow.summary td:nth-of-type(9):before,
+    .data_collection .holder>div>div>table.summary.reflow td:nth-of-type(9):before,
+    .data_collection .holder>div .ui-tabs-panel table.summary.reflow td:nth-of-type(9):before {
+        content: "Unit Cell"
+    }
+    .reflow.summary td:nth-of-type(10):before,
+    .data_collection .holder>div>div>table.summary.reflow td:nth-of-type(10):before,
+    .data_collection .holder>div .ui-tabs-panel table.summary.reflow td:nth-of-type(10):before {
+        content: "Resolution"
+    }
+    .reflow.summary td:nth-of-type(11):before,
+    .data_collection .holder>div>div>table.summary.reflow td:nth-of-type(11):before,
+    .data_collection .holder>div .ui-tabs-panel table.summary.reflow td:nth-of-type(11):before {
+        content: "Rmeas"
+    }
+    .reflow.summary td:nth-of-type(12):before,
+    .data_collection .holder>div>div>table.summary.reflow td:nth-of-type(12):before,
+    .data_collection .holder>div .ui-tabs-panel table.summary.reflow td:nth-of-type(12):before {
+        content: "Completeness"
+    }
+    .reflow.summary td:nth-of-type(13):before,
+    .data_collection .holder>div>div>table.summary.reflow td:nth-of-type(13):before,
+    .data_collection .holder>div .ui-tabs-panel table.summary.reflow td:nth-of-type(13):before {
+        content: "View / Download"
+    }
+    .reflow.xo td:nth-of-type(1):before,
+    .data_collection .holder>div>div>table.xo.reflow td:nth-of-type(1):before,
+    .data_collection .holder>div .ui-tabs-panel table.xo.reflow td:nth-of-type(1):before {
+        content: "Aligned Axes"
+    }
+    .reflow.xo td:nth-of-type(2):before,
+    .data_collection .holder>div>div>table.xo.reflow td:nth-of-type(2):before,
+    .data_collection .holder>div .ui-tabs-panel table.xo.reflow td:nth-of-type(2):before {
+        content: "Kappa"
+    }
+    .reflow.xo td:nth-of-type(3):before,
+    .data_collection .holder>div>div>table.xo.reflow td:nth-of-type(3):before,
+    .data_collection .holder>div .ui-tabs-panel table.xo.reflow td:nth-of-type(3):before {
+        content: "Phi"
+    }
+    .reflow.ehc td:nth-of-type(1):before,
+    .data_collection .holder>div>div>table.ehc.reflow td:nth-of-type(1):before,
+    .data_collection .holder>div .ui-tabs-panel table.ehc.reflow td:nth-of-type(1):before {
+        content: "Title"
+    }
+    .reflow.ehc td:nth-of-type(2):before,
+    .data_collection .holder>div>div>table.ehc.reflow td:nth-of-type(2):before,
+    .data_collection .holder>div .ui-tabs-panel table.ehc.reflow td:nth-of-type(2):before {
+        content: "Time"
+    }
+    .reflow.ehc td:nth-of-type(3):before,
+    .data_collection .holder>div>div>table.ehc.reflow td:nth-of-type(3):before,
+    .data_collection .holder>div .ui-tabs-panel table.ehc.reflow td:nth-of-type(3):before {
+        content: "By"
+    }
+    .reflow.ehc td:nth-of-type(4),
+    .data_collection .holder>div>table.ehc.reflow td:nth-of-type(4),
+    .data_collection .holder>div .ui-tabs-panel table.ehc.reflow td:nth-of-type(4) {
+        padding-left: 5px
+    }
+    .reflow.ehc td:nth-of-type(4):before,
+    .data_collection .holder>div>div>table.ehc.reflow td:nth-of-type(4):before,
+    .data_collection .holder>div .ui-tabs-panel table.ehc.reflow td:nth-of-type(4):before {
+        width: 0
+    }
+    .reflow.bc td:nth-of-type(1):before,
+    .data_collection .holder>div>div>table.bc.reflow td:nth-of-type(1):before,
+    .data_collection .holder>div .ui-tabs-panel table.bc.reflow td:nth-of-type(1):before {
+        content: "Beam Centre"
+    }
+    .reflow.bc td:nth-of-type(2):before,
+    .data_collection .holder>div>div>table.bc.reflow td:nth-of-type(2):before,
+    .data_collection .holder>div .ui-tabs-panel table.bc.reflow td:nth-of-type(2):before {
+        content: "X"
+    }
+    .reflow.bc td:nth-of-type(3):before,
+    .data_collection .holder>div>div>table.bc.reflow td:nth-of-type(3):before,
+    .data_collection .holder>div .ui-tabs-panel table.bc.reflow td:nth-of-type(3):before {
+        content: "Y"
+    }
+    .reflow.bepm_sets td:nth-of-type(1):before,
+    .data_collection .holder>div>div>table.bepm_sets.reflow td:nth-of-type(1):before,
+    .data_collection .holder>div .ui-tabs-panel table.bepm_sets.reflow td:nth-of-type(1):before {
+        content: "Processed"
+    }
+    .reflow.bepm_sets td:nth-of-type(2):before,
+    .data_collection .holder>div>div>table.bepm_sets.reflow td:nth-of-type(2):before,
+    .data_collection .holder>div .ui-tabs-panel table.bepm_sets.reflow td:nth-of-type(2):before {
+        content: "Anom. scatterer"
+    }
+    .reflow.bepm_sets td:nth-of-type(3):before,
+    .data_collection .holder>div>div>table.bepm_sets.reflow td:nth-of-type(3):before,
+    .data_collection .holder>div .ui-tabs-panel table.bepm_sets.reflow td:nth-of-type(3):before {
+        content: "Space group"
+    }
+    .reflow.bepm_sets td:nth-of-type(4):before,
+    .data_collection .holder>div>div>table.bepm_sets.reflow td:nth-of-type(4):before,
+    .data_collection .holder>div .ui-tabs-panel table.bepm_sets.reflow td:nth-of-type(4):before {
+        content: "Num. scatterers"
+    }
+    .reflow.bepm_sets td:nth-of-type(5):before,
+    .data_collection .holder>div>div>table.bepm_sets.reflow td:nth-of-type(5):before,
+    .data_collection .holder>div .ui-tabs-panel table.bepm_sets.reflow td:nth-of-type(5):before {
+        content: "Dataset type"
+    }
+    .reflow.bepm_sets td:nth-of-type(6):before,
+    .data_collection .holder>div>div>table.bepm_sets.reflow td:nth-of-type(6):before,
+    .data_collection .holder>div .ui-tabs-panel table.bepm_sets.reflow td:nth-of-type(6):before {
+        content: "Compound"
+    }
+    .reflow.bepm_sets td:nth-of-type(7):before,
+    .data_collection .holder>div>div>table.bepm_sets.reflow td:nth-of-type(7):before,
+    .data_collection .holder>div .ui-tabs-panel table.bepm_sets.reflow td:nth-of-type(7):before {
+        content: "Sequence"
+    }
+    .reflow.bepm_stats td:nth-of-type(1):before,
+    .data_collection .holder>div>div>table.bepm_stats.reflow td:nth-of-type(1):before,
+    .data_collection .holder>div .ui-tabs-panel table.bepm_stats.reflow td:nth-of-type(1):before {
+        content: "Pipeline"
+    }
+    .reflow.bepm_stats td:nth-of-type(2):before,
+    .data_collection .holder>div>div>table.bepm_stats.reflow td:nth-of-type(2):before,
+    .data_collection .holder>div .ui-tabs-panel table.bepm_stats.reflow td:nth-of-type(2):before {
+        content: "Res / Frag / Max"
+    }
+    .reflow.bepm_stats td:nth-of-type(3):before,
+    .data_collection .holder>div>div>table.bepm_stats.reflow td:nth-of-type(3):before,
+    .data_collection .holder>div .ui-tabs-panel table.bepm_stats.reflow td:nth-of-type(3):before {
+        content: "Best MapCC (Res)"
+    }
+    .reflow.bepm_stats td:nth-of-type(4):before,
+    .data_collection .holder>div>div>table.bepm_stats.reflow td:nth-of-type(4):before,
+    .data_collection .holder>div .ui-tabs-panel table.bepm_stats.reflow td:nth-of-type(4):before {
+        content: "Files"
+    }
+    .reflow.procsummary td:nth-of-type(1):before,
+    .data_collection .holder>div>div>table.procsummary.reflow td:nth-of-type(1):before,
+    .data_collection .holder>div .ui-tabs-panel table.procsummary.reflow td:nth-of-type(1):before {
+        content: "Type"
+    }
+    .reflow.procsummary td:nth-of-type(2):before,
+    .data_collection .holder>div>div>table.procsummary.reflow td:nth-of-type(2):before,
+    .data_collection .holder>div .ui-tabs-panel table.procsummary.reflow td:nth-of-type(2):before {
+        content: "Resolution"
+    }
+    .reflow.procsummary td:nth-of-type(3):before,
+    .data_collection .holder>div>div>table.procsummary.reflow td:nth-of-type(3):before,
+    .data_collection .holder>div .ui-tabs-panel table.procsummary.reflow td:nth-of-type(3):before {
+        content: "Space Group"
+    }
+    .reflow.procsummary td:nth-of-type(4):before,
+    .data_collection .holder>div>div>table.procsummary.reflow td:nth-of-type(4):before,
+    .data_collection .holder>div .ui-tabs-panel table.procsummary.reflow td:nth-of-type(4):before {
+        content: "Mn<I/sig(I)>"
+    }
+    .reflow.procsummary td:nth-of-type(5):before,
+    .data_collection .holder>div>div>table.procsummary.reflow td:nth-of-type(5):before,
+    .data_collection .holder>div .ui-tabs-panel table.procsummary.reflow td:nth-of-type(5):before {
+        content: "Rmerge Inner"
+    }
+    .reflow.procsummary td:nth-of-type(6):before,
+    .data_collection .holder>div>div>table.procsummary.reflow td:nth-of-type(6):before,
+    .data_collection .holder>div .ui-tabs-panel table.procsummary.reflow td:nth-of-type(6):before {
+        content: "Rmerge Inner"
+    }
+    .reflow.procsummary td:nth-of-type(7):before,
+    .data_collection .holder>div>div>table.procsummary.reflow td:nth-of-type(7):before,
+    .data_collection .holder>div .ui-tabs-panel table.procsummary.reflow td:nth-of-type(7):before {
+        content: "Completeness"
+    }
+    .reflow.procsummary td:nth-of-type(8):before,
+    .data_collection .holder>div>div>table.procsummary.reflow td:nth-of-type(8):before,
+    .data_collection .holder>div .ui-tabs-panel table.procsummary.reflow td:nth-of-type(8):before {
+        content: "Cell"
+    }
+}
+
+div.table.bg table th:not(.renderable),
+div.table.bg table tr:not(.empty) td:not(.renderable) {
+    display: none
+}

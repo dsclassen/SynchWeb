@@ -1,0 +1,228 @@
+/* 
+
+* {
+    padding: 0;
+    margin: 0
+}
+
+html {
+    height: 100%
+} */
+
+
+
+
+
+.inspect>.left {
+    width: 29%
+}
+
+.inspect>.right {
+    width: 69%
+}
+
+@media (max-width: 400px) {
+    .inspect>.left,
+    .inspect>.right {
+        float: none;
+        width: auto
+    }
+}
+
+.image_large {
+    position: relative;
+    background: #ebebeb
+}
+
+.image_large .score {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    z-index: 2
+}
+
+.image_large .COMMENTS {
+    bottom: 10px;
+    left: 5px;
+    position: absolute;
+    z-index: 2
+}
+
+.image_large .controls {
+    right: 5px;
+    bottom: 15px;
+    position: absolute;
+    width: 150px;
+    z-index: 2
+}
+
+.image_large .objects {
+    z-index: 2;
+    top: 5px;
+    right: 5px;
+    position: absolute
+}
+
+.image_large .objects .table {
+    margin: 0
+}
+
+.image_large .scorebybutton {
+    display: none;
+    z-index: 2
+}
+
+.image_large .help_pane {
+    z-index: 2;
+    border-radius: 5px;
+    display: none;
+    position: absolute;
+    background: #000;
+    color: #e2e2e2;
+    top: 35px;
+    right: 5px;
+    padding: 0.7%
+}
+
+.image_large .help_pane.enable {
+    display: block
+}
+
+.image_large .help_pane ul.keys li .hkey {
+    border-radius: 2px;
+    box-shadow: 2px 2px 0px 1px #666;
+    background: #eee;
+    padding: 5px;
+    display: inline-block;
+    width: 20px;
+    margin: 3px;
+    margin-right: 8px;
+    color: #000;
+    text-align: center
+}
+
+@media (max-width: 400px) {
+    .image_large .controls,
+    .image_large .scoresel,
+    .image_large .COMMENTS {
+        display: none
+    }
+    .image_large .scorebybutton {
+        display: block;
+        bottom: 5px;
+        left: 5px;
+        position: absolute
+    }
+    .image_large .scorebybutton .current {
+        font-weight: bold
+    }
+}
+
+div.img_history {
+    z-index: 2;
+    position: absolute;
+    bottom: 40px;
+    width: 98%;
+    padding: 5px;
+    overflow-x: scroll;
+    text-align: center
+}
+
+div.img_history.embed {
+    position: static;
+    width: auto
+}
+
+div.img_history columns {
+    padding: 0 25px
+}
+
+div.img_history div {
+    white-space: nowrap
+}
+
+div.img_history figure {
+    display: inline-block;
+    padding: 0;
+    margin: 0 2px;
+    background: #cdcdcd;
+    opacity: 0.65;
+    height: 100px
+}
+
+div.img_history figure.selected {
+    opacity: 1
+}
+
+div.img_history figure figcaption {
+    background: #cdcdcd
+}
+
+div.img_history figure img {
+    height: 100%;
+    width: auto
+}
+
+div.img_history .nav {
+    position: absolute;
+    width: 99%;
+    height: 100%;
+    padding: 0;
+    margin: 0
+}
+
+div.img_history .nav a {
+    background: #cdcdcd;
+    display: inline-block;
+    font-size: 30px;
+    height: 100%;
+    width: 25px;
+    text-decoration: none;
+    opacity: 0.5
+}
+
+div.img_history .nav a:hover {
+    opacity: 0.8
+}
+
+div.img_history .nav a i {
+    display: block;
+    top: 50%;
+    transform: translateY(-50%);
+    position: relative
+}
+
+div.img_history .nav a.previous {
+    float: left
+}
+
+div.img_history .nav a.next {
+    float: right
+}
+
+.add_image {
+    display: none
+}
+
+.add_image.enable {
+    display: block
+}
+
+.add_image .dropimage {
+    color: #cdcdcd;
+    padding: 5%;
+    border: 2px dashed #cdcdcd;
+    margin: 2% 0;
+    text-align: center;
+    border-radius: 5px
+}
+
+.add_image .dropimage.active {
+    color: #000;
+    background: #dedede;
+    text-decoration: italic
+}
+
+input[name=gap] {
+    width: 30px
+}

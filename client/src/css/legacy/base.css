@@ -1,0 +1,57 @@
+body {
+    background: #000;
+    font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+    font-size: 12px;
+    line-height: 1.231;
+    min-height: 100%
+}
+
+body.active {
+    background: #000
+}
+
+a {
+    color: #666
+}
+
+a:hover {
+    color: #222
+}
+
+#wrapper {
+    background: #f4f4f4
+}
+
+@media (max-width: 1024px) {
+    #wrapper {
+        background: #5c5c5c;
+        overflow-x: hidden
+    }
+}
+
+.cont_wrap {
+    background: #f4f4f4
+}
+
+#container,
+#motd {
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 20px
+}
+
+@media (max-width: 1280px) {
+    #container,
+    #motd {
+        width: 96%
+    }
+}
+
+#motd {
+    padding-top: 0;
+    padding-bottom: 0
+}
+
+#motd p {
+    margin-top: 20px
+}

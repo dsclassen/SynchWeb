@@ -1,0 +1,137 @@
+
+.dc {
+    background: #efefef;
+    width: 23%;
+    margin: .5%;
+    padding: .5%;
+    display: inline-block;
+    border-radius: 5px
+}
+
+@media (max-width: 1024px) {
+    .dc {
+        width: 30.33333%;
+        margin: 1%;
+        padding: .5%
+    }
+}
+
+@media (max-width: 800px) {
+    .dc {
+        width: 47%;
+        margin: 1%;
+        padding: .5%
+    }
+}
+
+@media (max-width: 400px) {
+    .dc {
+        width: 97%;
+        margin: 1%;
+        padding: .5%
+    }
+}
+
+.dc.selected {
+    background: #dedede
+}
+
+.dc .distl {
+    height: 100px
+}
+
+.dc .state {
+    float: right
+}
+
+.dc .state ul {
+    list-style: none;
+    margin-left: -25px
+}
+
+.dc .state ul li {
+    display: inline;
+    font-size: 10px;
+    padding-right: 2px
+}
+
+.dc img {
+    float: right
+}
+
+.data_collection.cell input,
+.data_collection.options input {
+    width: 65px
+}
+
+.filter ul li a {
+    text-decoration: none
+}
+
+.filter ul li.running,
+.filter ul li.running:after {
+    background: #82d180
+}
+
+span.run_state {
+    float: right
+}
+
+.autoproc {
+    display: none
+}
+
+.dc_count {
+    float: right
+}
+
+.blended_wrap,
+.table_wrap {
+    overflow-y: auto
+}
+
+.dend_wrap,
+.blended_wrap {
+    margin-bottom: 1%
+}
+
+.table_wrap {
+    margin-bottom: 1%
+}
+
+.dc_wrap {
+    overflow-y: auto
+}
+
+.data_collections.int {
+    width: 99%
+}
+
+.dend_wrap {
+    padding: 0.5%
+}
+
+.dendrogram {
+    width: 96%;
+    height: 100px
+}
+
+#images iframe,
+#add_contact iframe {
+    width: 100%;
+    height: 100%;
+    border: none
+}
+
+.dend_wrap .slider {
+    width: 50%;
+    display: inline-block
+}
+
+.dend_wrap .controls {
+    padding: 0.5%
+}
+
+.yAxis .tickLabel.selected {
+    font-weight: bold
+}

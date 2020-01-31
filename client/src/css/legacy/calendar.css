@@ -1,0 +1,231 @@
+
+.calendar>ul {
+    list-style: none
+}
+
+.calendar>ul.links li {
+    display: block;
+    width: 22.6%;
+    margin: .2%;
+    padding: 1%;
+    height: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: background .3s ease-out
+}
+
+.calendar>ul.links li:hover {
+    background: #dfdfdf
+}
+
+.calendar>ul>li {
+    float: left;
+    display: block;
+    width: 11.88571%;
+    margin: .2%;
+    padding: 1%;
+    background: #eee;
+    height: 100px;
+    overflow: hidden
+}
+
+@media (max-width: 800px) {
+    .calendar>ul>li {
+        width: 95%;
+        margin: .5%;
+        padding: 2%;
+        height: auto
+    }
+}
+
+.calendar>ul>li .full {
+    display: none
+}
+
+@media (max-width: 800px) {
+    .calendar>ul>li .full {
+        display: inline
+    }
+}
+
+.calendar>ul>li.head {
+    background: #cecece;
+    height: 15px;
+    font-weight: bold;
+    text-align: center
+}
+
+@media (max-width: 800px) {
+    .calendar>ul>li.head {
+        display: none
+    }
+}
+
+.calendar>ul>li.wend {
+    background: #dfdfdf
+}
+
+.calendar>ul>li.noday {
+    background: #f3f3f3
+}
+
+@media (max-width: 800px) {
+    .calendar>ul>li.noday {
+        display: none
+    }
+}
+
+@media (max-width: 800px) {
+    .calendar>ul>li.no_event {
+        display: none
+    }
+}
+
+.calendar>ul>li.today {
+    background: #cecece
+}
+
+@media (min-width: 800px) {
+    .calendar>ul>li:hover {
+        position: relative;
+        overflow: visible
+    }
+    .calendar>ul>li:hover>ul {
+        background: #dadada;
+        border-radius: 3px;
+        max-height: 500px
+    }
+}
+
+.calendar>ul>li>ul {
+    padding: 5px
+}
+
+@media (min-width: 800px) {
+    .calendar>ul>li>ul {
+        overflow: hidden;
+        transition: max-height 0.5s ease-in-out;
+        max-height: 90px
+    }
+}
+
+@media (max-width: 800px) {
+    .calendar>ul>li>ul li .time {
+        float: right;
+        margin-left: 5px
+    }
+    .calendar>ul>li>ul li .time:before {
+        content: "Starts: "
+    }
+}
+
+.calendar>ul>li>ul>li>ul {
+    padding: 0 5px;
+    list-style: none
+}
+
+.calendar>ul>li>ul>li>ul li .details {
+    display: none;
+    padding: 2%;
+    background: #f3f3f3;
+    z-index: 4
+}
+
+.calendar>ul>li>ul>li>ul li:hover .details {
+    display: block
+}
+
+@media (max-width: 800px) {
+    .calendar>ul>li>ul>li>ul {
+        border-bottom: 1px solid #cecece;
+        margin-bottom: 5px;
+        padding-bottom: 5px
+    }
+    .calendar>ul>li>ul>li>ul .short {
+        display: none
+    }
+    .calendar>ul>li>ul>li>ul li.past {
+        color: #999
+    }
+    .calendar>ul>li>ul>li>ul li.past a {
+        color: #999
+    }
+    .calendar>ul>li>ul>li>ul li .details {
+        display: block;
+        background: none;
+        padding: 0;
+        color: #999
+    }
+    .calendar>ul>li>ul>li>ul li .type {
+        float: right
+    }
+}
+
+@media (max-width: 800px) {
+    .calendar_header {
+        display: none
+    }
+}
+
+@media (max-width: 800px) {
+    .calendar_main {
+        height: 350px;
+        overflow-y: scroll
+    }
+}
+
+.calendar ul.calendar_days {
+    display: none;
+    padding: 2px;
+    border-bottom: 1px solid #dfdfdf;
+    margin: 0.5%
+}
+
+@media (max-width: 800px) {
+    .calendar ul.calendar_days {
+        display: block;
+        height: 55px;
+        white-space: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden
+    }
+}
+
+.calendar ul.calendar_days li {
+    width: 30px;
+    height: 45px;
+    float: none;
+    display: inline-block;
+    text-align: center
+}
+
+.calendar ul.calendar_days li .day {
+    display: block
+}
+
+.calendar ul.calendar_days li .number {
+    display: block;
+    border-radius: 3px;
+    padding: 4px
+}
+
+.calendar ul.calendar_days li.past {
+    color: #999
+}
+
+.calendar ul.calendar_days li.event .number {
+    background: #dfdfdf
+}
+
+/* Few fixes to work with tailwind preset */
+.calendar ul.links li {
+    box-sizing: content-box;
+}
+
+.calendar ul li.head {
+    box-sizing: content-box;
+}
+
+.calendar ul li {
+    box-sizing: content-box;
+}

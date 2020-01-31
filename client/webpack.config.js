@@ -182,7 +182,8 @@ module.exports = {
           // Extract the CSS into separate files
           MiniCssExtractPlugin.loader,
           "css-loader", // translates CSS into CommonJS
-          "sass-loader" // compiles Sass to CSS, using Node Sass by default
+          "postcss-loader"
+          // "sass-loader" // compiles Sass to CSS, using Node Sass by default
         ]
       },
       {
@@ -250,5 +251,8 @@ module.exports = {
       filename: '[name].css',
       chunkFilename: '[id].css',
     }),
+    // Allow use to use process.env.NODE_ENV in the build
+    // NODE_ENV should be set in scripts for production builds
+    new webpack.EnvironmentPlugin(['NODE_ENV'])
   ]
 }
