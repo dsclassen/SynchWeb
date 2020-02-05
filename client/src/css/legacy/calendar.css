@@ -1,4 +1,3 @@
-
 .calendar>ul {
     list-style: none
 }
@@ -215,17 +214,4 @@
 
 .calendar ul.calendar_days li.event .number {
     background: #dfdfdf
-}
-
-/* Few fixes to work with tailwind preset */
-.calendar ul.links li {
-    box-sizing: content-box;
-}
-
-.calendar ul li.head {
-    box-sizing: content-box;
-}
-
-.calendar ul li {
-    box-sizing: content-box;
 }

@@ -55,3 +55,8 @@ a:hover {
 #motd p {
     margin-top: 20px
 }
+
+/* Tailwind modifications. By default we want list items to with content box sizing, easier to control layout */
+ul li {
+    box-sizing: content-box;
+}

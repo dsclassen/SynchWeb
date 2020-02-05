@@ -1,6 +1,3 @@
-
-
-
 div.form {
     padding: 10px
 }
@@ -68,7 +65,7 @@ div.form textarea,
 div.form select {
     margin: 0 0 20px 5px
 }
-/* Defining padding for input types at end of file */
+
 /* div.form input:not(.ui-combobox-input),
 div.form textarea:not(.ui-combobox-input),
 div.form select:not(.ui-combobox-input) {
@@ -105,8 +102,7 @@ div.form input.full {
 
 div.form button.submit {
     width: 150px;
-    height: 30px;
-    @apply tw-border tw-border-solid tw-rounded;
+    height: 30px
 }
 
 div.form select[multiple=multiple] {
@@ -216,9 +212,11 @@ div.form .ferror {
 
 .editable:hover {
     cursor: pointer;
-    background: #cdcdcd url("/templates/images/edit.png") no-repeat right;
-    background: #cdcdcd url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAANCAQAAAAOR/aSAAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfdDAQPNicPrLwkAAAAWElEQVQY063PsQ3AIAxE0R9WMoOEbRjB22QRMxNpgmRQTMWVpyf5DKdyrYUKRq7Nd+mHgM1tmkltFCCHl1W06w0q4SYVjMKz7nFoRz60JwN1gIj470JyMi8YZRwyixNLhAAAAABJRU5ErkJggg==') no-repeat right;
-    padding-right: 2.5%
+    background-color: #cdcdcd;
+    background-image: url('./images/edit.png');
+    background-repeat: no-repeat;
+    background-position: right;
+    padding-right: 2.5%;
 }
 
 @media (max-width: 800px) {
