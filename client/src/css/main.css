@@ -1,23 +1,19 @@
 /* @import "tailwindcss/base"; */
 /* the tailwind reset is pretty opinionated so restore some key styles for legacy SynchWeb */
+
 @import "components/normalize.css";
-/* @import "components/reset.css"; */
 @import "components/typography.css";
 
 @import "tailwindcss/components";
 
 @import "legacy/base.css";
-
 @import "legacy/icons.css";
 @import "legacy/utility.css";
-
 @import "legacy/plots.css";
 @import "legacy/tables.css";
-
 @import "legacy/header.css";
 @import "legacy/sidebar.css";
 @import "legacy/content.css";
-
 @import "legacy/calendar.css";
 @import "legacy/forms.css";
 @import "legacy/assign.css";
@@ -25,11 +21,12 @@
 @import "legacy/mc.css";
 @import "legacy/imaging.css";
 
+
 /* Third-party */
-@import "vendor/jquery_misc.css";
 @import "vendor/jquery-ui.css";
-/* Magnific popup adds classes programatically, so we need to whitelist it for purgecss to include it */
 /* purgecss start ignore */
+@import "vendor/jquery_misc.css";
+/* Magnific popup adds classes programatically, so we need to whitelist it for purgecss to include it */
 @import "vendor/magnific-popup.css";
 /* purgecss end ignore */
 
