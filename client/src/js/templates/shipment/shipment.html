@@ -139,15 +139,33 @@
 
     <h1>
         Dewar Details: <span class="dewar_name"></span>
+        <!-- Remove this span element if we want to move the Add Container button -->
         <span class="r padded_button add_container"></span>
     </h1>
 
     <p class="help">This section shows contents and history for the selected dewar. Click the spyglass icon to view the contents of the container</p>
 
-    <div class="left dcontent"></div>
+    <!-- If we want to move the Add Container button to be consistent with Add Dewar -->
+    <!-- <div class="tw-flex tw-justify-end tw-my-2">
+        <span class="r padded_button add_container"></span>
+    </div> -->
 
+    <div class="tw-flex tw-flex-col sm:tw-flex-row">
+        <div class="tw-w-full sm:tw-w-1/2 sm:tw-mr-2 dcontent"></div>
+        <div class="tw-w-full sm:tw-w-1/2 sm:tw-ml-2">
+            <div class="sm:tw-flex sm:tw-flex-col">
+                <div class="history table table-no-margin"></div>
+                <div class="tracking table table-no-margin"></div>
+            </div>
+        </div>
+    </div>
+
+<!-- Legacy layout pre-tailwind -->
+<!--
+    <div class="left dcontent"></div>
 
     <div class="right history table table-no-margin"></div>
     <div class="right tracking table table-no-margin"></div>
 
     <div class="clear"></div>
+-->
