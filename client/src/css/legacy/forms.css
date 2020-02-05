@@ -378,12 +378,12 @@ table input[type=text] {
 .form textarea {
     font-family: inherit;
     @apply tw-p-1;
-    @apply tw-bg-white tw-rounded tw-shadow tw-border;
+    @apply tw-bg-white tw-rounded tw-shadow tw-border
     /* Turn on debugging... */
     /* @apply tw-border-4 tw-border-orange-400; */
 }
 
 .form input:focus, .form textarea:focus {
-    @apply tw-outline-none tw-border-blue-500;
+    @apply tw-outline-none tw-border-blue-500
 }
 
