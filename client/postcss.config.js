@@ -8,6 +8,7 @@ const purgecss = require('@fullhuman/postcss-purgecss')({
     './src/**/*.vue',
     './src/**/*.js', /* Lots of classes are used within inline templates... */
   ],
+  defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
 })
 
 module.exports = ({env}) => (
