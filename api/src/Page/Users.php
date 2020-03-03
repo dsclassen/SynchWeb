@@ -314,7 +314,11 @@ class Users extends Page
         $person = $this->db->pq("SELECT login FROM person WHERE login=:1", array($this->arg('LOGIN')));
 
         if (!sizeof($person)) $this->_error('Login not used');
+<<<<<<< HEAD:api/src/Page/Users.php
         else $this->_output(new \stdClass);
+=======
+        else $this->_output(new stdClass);
+>>>>>>> nwilson/migrate/notebook:api/src/pages/Users.php
     }
 
 
@@ -356,7 +360,11 @@ class Users extends Page
                 if ($f == 'PASSWORD') $v = password_hash($v);
 
                 $this->db->pq('UPDATE person SET '.$f.'=:1 WHERE personid=:2', array($v, $person['PERSONID']));
+<<<<<<< HEAD:api/src/Page/Users.php
                 $this->_output($f == 'PASSWORD' ? new \stdClass : array($f => $this->arg($f)));
+=======
+                $this->_output($f == 'PASSWORD' ? new stdClass : array($f => $this->arg($f)));
+>>>>>>> nwilson/migrate/notebook:api/src/pages/Users.php
             }
         }
 

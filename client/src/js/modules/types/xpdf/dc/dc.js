@@ -1,9 +1,14 @@
 define([
     'modules/types/gen/dc/dc',
     'modules/types/gen/dc/datplot',
+<<<<<<< HEAD
     'modules/types/xpdf/dc/views/autointegration',
     'utils',
     'templates/types/xpdf/dc/dc.html'], function(DCItemView, DatPlot, DCAutoIntegrationView, utils, template) {
+=======
+    'utils',
+    'templates/types/xpdf/dc/dc.html'], function(DCItemView, DatPlot, utils, template) {
+>>>>>>> nwilson/migrate/notebook
 
 
     return DCItemView.extend({
@@ -12,7 +17,10 @@ define([
         // imageStatusItem: DCImageStatusItem,
         
         events: {
+<<<<<<< HEAD
             'click .holder h1.ap': 'loadAP',
+=======
+>>>>>>> nwilson/migrate/notebook
             'click .distl': 'showPlot',
             'click .diffraction': 'showDiff',
             'click .atp': 'addToProject',
@@ -27,12 +35,16 @@ define([
             e.preventDefault()
             this.$el.find('.diffraction a').eq(0).trigger('click')
         },
+<<<<<<< HEAD
 
         loadAP: function(e) {
             if (!this.ap) {
               this.ap = new DCAutoIntegrationView({ id: this.model.get('ID'), el: this.$el.find('div.autoproc') })
             } else this.ap.$el.slideToggle()
         },
+=======
+        
+>>>>>>> nwilson/migrate/notebook
     })
 
 })

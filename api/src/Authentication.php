@@ -56,33 +56,17 @@ class Authentication
 
 		    $need_auth = true;
 		    # Work around to allow beamline sample registration without CAS authentication
-		    if (sizeof($parts) >= 3) {
-		    	if (
-		            # Calendar ICS export
-		            ($parts[0] == 'cal' && $parts[1] == 'ics' && $parts[2] == 'h') || 
-
-                    # Allow formulatrix machines unauthorised access to inspections, certain IPs only
-                    ($parts[0] == 'imaging' && $parts[1] == 'inspection' && in_array($_SERVER["REMOTE_ADDR"], $img)) ||
-
-					# For use on the touchscreen computers in the hutch.
-					# Handles api calls: /assign/visits/<vist> e.g./assign/visits/mx1234-1
-		            ($parts[0] == 'assign' && $parts[1] == 'visits' && in_array($_SERVER["REMOTE_ADDR"], $blsr)) ||
-
-					# Allow barcode reader ips unauthorised access to add history
-		            ($parts[0] == 'shipment' && $parts[1] == 'dewars' && $parts[2] == 'history' && in_array($_SERVER["REMOTE_ADDR"], $bcr)) ||
-
-		            # Container notification: allow beamlines running in automated mode to notify users
-		    		($parts[0] == 'shipment' && $parts[1] == 'containers' && $parts[2] == 'notify' && in_array($_SERVER["REMOTE_ADDR"], $auto))
-		    	) {
-		    		$need_auth = false;
-		    	}
-
-		    } else if (sizeof($parts) >= 2) {
+		    if (sizeof($parts) >= 2) {
 		        if (
-					# For use on the touchscreen computers in the hutch
-					# Handles api calls: /assign/assign, /assign/unassign, /assign/deact, /assign/visits
+		            # For use on the touchscreen computers in the hutch
 		            (($parts[0] == 'assign') && in_array($_SERVER["REMOTE_ADDR"], $blsr)) ||
 		            (($parts[0] == 'shipment' && $parts[1] == 'containers') && in_array($_SERVER["REMOTE_ADDR"], $blsr)) ||
+
+		            # Container notification
+		            ($parts[0] == 'shipment' && $parts[1] == 'containers' && $parts[2] == 'notify') || 
+
+		            # Calendar ICS export
+		            ($parts[0] == 'cal' && $parts[1] == 'ics' && $parts[2] == 'h') ||
 
 		            # Allow barcode reader unauthorised access, same as above, certain IPs only
 		            ($parts[0] == 'shipment' && $parts[1] == 'dewars' && in_array($_SERVER["REMOTE_ADDR"], $bcr)) ||
@@ -96,7 +80,6 @@ class Authentication
 		        ) {
 		            $need_auth = false;
 		        }
-
 		    }
 
 		    if (sizeof($parts) > 0) {
@@ -183,7 +166,7 @@ class Authentication
 					$this->user = $token->data->login;
 
 				// Invalid token
-				} catch (\Exception $e) {
+				} catch (Exception $e) {
 					$this->_error(401, 'Invalid authorisation token');
 				}
 

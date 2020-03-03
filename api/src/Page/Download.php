@@ -53,7 +53,10 @@ class Download extends Page
                               array('/dc/id/:id', 'get', '_download'),
 
                               array('/ap/attachments(/:AUTOPROCPROGRAMATTACHMENTID)(/dl/:download)', 'get', '_get_autoproc_attachments'),
+<<<<<<< HEAD:api/src/Page/Download.php
                               array('/zocalo/ap/attachments(/:AUTOPROCPROGRAMATTACHMENTID)(/dl/:download)', 'get', '_get_zocalo_autoproc_attachments'),
+=======
+>>>>>>> nwilson/migrate/notebook:api/src/pages/Download.php
                               array('/ph/attachments(/:PHASINGPROGRAMATTACHMENTID)(/dl/:download)', 'get', '_get_phasing_attachments'),
             );
 
@@ -245,6 +248,7 @@ class Download extends Page
 
 
         # ------------------------------------------------------------------------
+<<<<<<< HEAD:api/src/Page/Download.php
         # Return list of attachments for an autoproc run
         function _get_zocalo_autoproc_attachments() {
             if (!$this->has_arg('prop')) $this->_error('No proposal specific', 'No proposal specified');
@@ -283,6 +287,8 @@ class Download extends Page
 
 
         # ------------------------------------------------------------------------
+=======
+>>>>>>> nwilson/migrate/notebook:api/src/pages/Download.php
         # Return list of attachments for a phasing run
         #   TODO: duplicate of above, consolidate tables
         function _get_phasing_attachments() {
@@ -322,6 +328,7 @@ class Download extends Page
         }
 
 
+<<<<<<< HEAD:api/src/Page/Download.php
         /**
          * Download a file to the browser
          * This function is used to download autoproc and phasing run attachments.
@@ -334,6 +341,10 @@ class Download extends Page
         function _get_file($id, $file) {
             // We don't want to allow unlimited file sizes
             ini_set('memory_limit', '512M');
+=======
+
+        function _get_file($id, $file) {
+>>>>>>> nwilson/migrate/notebook:api/src/pages/Download.php
             $path_ext = pathinfo($file['FILENAME'], PATHINFO_EXTENSION);
 
             if ($path_ext == 'html') header("Content-Type: text/html");
@@ -352,6 +363,7 @@ class Download extends Page
             else $this->_header($id.'_'.$file['FILENAME']);
 
             $f = $file['FILEPATH'].'/'.$file['FILENAME'];
+<<<<<<< HEAD:api/src/Page/Download.php
 
             if (file_exists($f)) {
                 // We were getting out of memory errors - switch off output buffer to fix
@@ -360,6 +372,9 @@ class Download extends Page
                 }
                 // Setting content length means browser can indicate how long is left
                 header('Content-Length: ' . filesize($f));
+=======
+            if (file_exists($f)) {
+>>>>>>> nwilson/migrate/notebook:api/src/pages/Download.php
                 readfile($f);
                 exit();
 

@@ -78,7 +78,11 @@ define([
                             {title: 'Data Collections', url: '/dc'},
                             {title: self.visit['BL']},
                             {title: self.visit['VISIT'], url: '/dc/visit/' + self.visit['VISIT']},
+<<<<<<< HEAD
                             {title: 'Scipion Processing'}
+=======
+                            {title: 'Processing'}
+>>>>>>> nwilson/migrate/notebook
                         ]);
                     },
                     error: function () {

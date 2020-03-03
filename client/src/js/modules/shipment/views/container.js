@@ -51,7 +51,10 @@ define(['marionette',
         ui: {
             ext: '.extrainfo',
             auto: '.auto',
+<<<<<<< HEAD:client/src/js/modules/shipment/views/container.js
             extrastate: '.extra-state',
+=======
+>>>>>>> nwilson/migrate/notebook:client/js/modules/shipment/views/container.js
         },
 
         events: {

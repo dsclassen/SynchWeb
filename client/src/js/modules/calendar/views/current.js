@@ -48,7 +48,9 @@ define(['marionette',
         },
         
         showVisit: function(e) {
-            if ($(e.target).is('a') || $(e.target).is('i')) return
+            //if ($(e.target).is('a') || $(e.target).is('i')) return //IS THERE A REASON WHY WE NEED THIS LINE? Commented for now, can be removed if no issues
+            var visit = this.model.get('VISIT')
+            app.setVisit(visit.substring(visit.lastIndexOf('-')+1, visit.length))
             app.trigger('dclist:show', this.model.get('VISIT'))
         },
         

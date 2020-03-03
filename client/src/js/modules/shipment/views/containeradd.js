@@ -107,7 +107,10 @@ define(['backbone',
             barcode: 'input[name=BARCODE]',
             registry: 'select[name=CONTAINERREGISTRYID]',
             auto: 'input[name=AUTOMATED]',
+<<<<<<< HEAD:client/src/js/modules/shipment/views/containeradd.js
             extrastate: '.extra-state',
+=======
+>>>>>>> nwilson/migrate/notebook:client/js/modules/shipment/views/containeradd.js
         },
         
         
