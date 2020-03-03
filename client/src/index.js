@@ -1,4 +1,4 @@
-var Styles = require('main.scss')
+var Styles = require('main.css')
 var FontAwesome = require('font-awesome/css/font-awesome.css')
 const config = require('./js/config.json')
 

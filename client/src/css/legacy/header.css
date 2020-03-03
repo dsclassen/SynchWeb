@@ -1,0 +1,184 @@
+
+#header {
+    background-color: #2c2c2c;
+    background-image: url('./images/diamond_gs_small.png');
+    background-repeat: no-repeat;
+    background-position: top center;
+    color: #666;
+}
+
+#header h1 {
+    padding: 10px;
+    font-size: 12px;
+    font-weight: 400;
+    color: #666
+}
+
+#header h1 a {
+    color: #666;
+    text-decoration: none
+}
+
+#header a {
+    color: #666
+}
+
+#header a:hover {
+    color: #cdcdcd
+}
+
+#header a.pull {
+    display: none
+}
+
+#header span.search-mobile {
+    display: none;
+    padding: 1px;
+    background: #cdcdcd
+}
+
+#header span.search-mobile input.search-mobile {
+    font-family: "FontAwesome";
+    width: 97%;
+    padding: 1%
+}
+
+#header span.search-mobile.split input.search-mobile {
+    width: 46%
+}
+
+#header span.search-mobile.split select {
+    font-size: 16px
+}
+
+@media (max-width: 1024px) {
+    #header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 4
+    }
+    #header a.pull.enable {
+        display: inline-block
+    }
+}
+
+@media (max-width: 800px) {
+    #header {
+        font-size: 14px;
+        background-image: none
+    }
+    #header .icon-label {
+        display: none
+    }
+    #header span.search-mobile.enable {
+        display: block
+    }
+}
+
+#menu {
+    font-size: 12px;
+    float: right;
+    list-style-type: none;
+    padding: 5px;
+    color: #ddd;
+    white-space: nowrap
+}
+
+@media (max-width: 800px) {
+    #menu {
+        font-size: 14px
+    }
+}
+
+#menu li {
+    display: inline;
+    padding: 0 5px
+}
+
+#menu li a {
+    color: #ddd;
+    text-decoration: none
+}
+
+#menu li a:hover {
+    color: #fff
+}
+
+#navigation {
+    background: #474747;
+    color: #dbdbdb;
+    font-size: 10px;
+    list-style-type: none;
+    padding: 5px 5px;
+    clear: both
+}
+
+#navigation li {
+    display: inline;
+    padding: 2px
+}
+
+#navigation li a {
+    color: #dbdbdb;
+    text-decoration: none
+}
+
+#navigation li a:hover {
+    color: #fff
+}
+
+#navigation li:before {
+    content: '\00BB  '
+}
+
+#footer {
+    margin-top: 70px;
+    background-color: #000;
+    background-image: url('./images/ispyb_gs_medium.png');
+    /* background-position: center; */
+    background-repeat: no-repeat;
+    height: 200px;
+    background-position: 50% 85%
+}
+
+@media (max-width: 1024px) {
+    #footer {
+        clear: both
+    }
+}
+
+#footer .whatnow {
+    border-top: 1px solid #bbb;
+    font-size: 16px;
+    font-family: "Maven Pro";
+    text-align: center
+}
+
+#footer .whatnow a {
+    display: block;
+    padding: 0.5%;
+    color: #222;
+    background: #eee;
+    transition: 0.3s ease-in-out
+}
+
+#footer .whatnow a:hover {
+    color: #000
+}
+
+#footer a {
+    color: #efefef;
+    text-decoration: none
+}
+
+#footer a:hover {
+    color: #efefef
+}
+
+#footer p {
+    padding: 1%;
+    text-align: center;
+    color: #efefef;
+    font-size: 10px
+}

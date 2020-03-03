@@ -1,0 +1,129 @@
+
+.c_holder {
+    margin-bottom: 2%
+}
+
+.c_holder>h1 {
+    font-family: "Droid Sans";
+    font-size: 14px
+}
+
+.bl_puck {
+    width: 18.6%;
+    margin: .2%;
+    padding: .5%;
+    height: 55px;
+    background: #afafaf;
+    float: left
+}
+
+@media (max-width: 800px) {
+    .bl_puck {
+        width: 23.6%;
+        margin: .2%;
+        padding: .5%
+    }
+}
+
+@media (max-width: 400px) {
+    .bl_puck {
+        width: 48%;
+        margin: .5%;
+        padding: .5%
+    }
+}
+
+.bl_puck_drag {
+    background: #dedede
+}
+
+.shipment {
+    padding: 0.5%;
+    margin: 0.4% 0;
+    background: #afafaf
+}
+
+.shipment h1 {
+    padding: 0.5%
+}
+
+.shipment .dewar {
+    background: #dedede;
+    padding: 0.2%;
+    margin: 0.5% 0;
+    display: none
+}
+
+.shipment .dewar .deactivate {
+    display: none
+}
+
+.shipment .dewar.active {
+    background: #82d180
+}
+
+.shipment .dewar.active .deactivate {
+    display: inline
+}
+
+.unassigned_drag .shipment {
+    background: #dedede
+}
+
+.shipment:hover {
+    cursor: pointer
+}
+
+.container {
+    height: 30px;
+    overflow: auto;
+    background: #ebebeb;
+    width: 23.6%;
+    margin: .2%;
+    padding: .5%;
+    float: left;
+    border-radius: 5px
+}
+
+.container.assigned {
+    width: 92%;
+    margin: 0;
+    padding: 4% 4% 1% 4%
+}
+
+.container:hover {
+    cursor: pointer
+}
+
+@media (max-width: 400px) {
+    .container {
+        width: 47%;
+        margin: .5%;
+        padding: 1%
+    }
+}
+
+.visits {
+    list-style: none
+}
+
+.visits li {
+    width: 30.33333%;
+    margin: .5%;
+    padding: 1%;
+    float: left;
+    border-radius: 5px;
+    background: #dedede
+}
+
+.visits li.active {
+    background: #82d180
+}
+
+@media (max-width: 800px) {
+    .visits li {
+        width: 94%;
+        margin: 1% 0;
+        padding: 3%
+    }
+}
