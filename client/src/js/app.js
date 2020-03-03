@@ -217,13 +217,8 @@ function(Backbone, Marionette, _, $, HeaderView, SideBarView, DialogRegion, Logi
         'modules/mc/router',
         'modules/admin/router',
         'modules/imaging/router',
-<<<<<<< HEAD:client/src/js/app.js
         'modules/types/em/relion/router',
-        'modules/types/em/scipion/router',
-=======
-        'modules/types/em/scipion/router',
         'modules/notebook/router',
->>>>>>> nwilson/migrate/notebook:client/js/app.js
     ], function() {
             
         this.sidebarview = new SideBarView()
@@ -334,20 +329,14 @@ function(Backbone, Marionette, _, $, HeaderView, SideBarView, DialogRegion, Logi
   /*
    Deselect the selected proposal.
    Used when navigating back to home page.
-<<<<<<< HEAD:client/src/js/app.js
-=======
    Also deletes selected visit number
->>>>>>> nwilson/migrate/notebook:client/js/app.js
   */
   app.clearProposal = function() {
       // Clear the proposal cookie/object
     sessionStorage.removeItem('prop')
 
     delete app.prop
-<<<<<<< HEAD:client/src/js/app.js
-=======
     app.clearVisit()
->>>>>>> nwilson/migrate/notebook:client/js/app.js
     // Reset type to the default for this user
     app.type = app.defaultType
     if (!app.type) {
@@ -359,9 +348,6 @@ function(Backbone, Marionette, _, $, HeaderView, SideBarView, DialogRegion, Logi
     // Now we need to tell any listening views that the proposal has changed...
     app.triggerMethod('proposal:change', null)
   },
-<<<<<<< HEAD:client/src/js/app.js
-=======
-
 
   /*
    Set current visit number
@@ -381,9 +367,7 @@ function(Backbone, Marionette, _, $, HeaderView, SideBarView, DialogRegion, Logi
       sessionStorage.removeItem('visit')
       delete app.visit
       app.triggerMethod('visit:change', null)
-  }
-  
->>>>>>> nwilson/migrate/notebook:client/js/app.js
+  }  
 
   /*
    Load client side options and show MOTD
