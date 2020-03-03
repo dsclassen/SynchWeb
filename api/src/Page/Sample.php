@@ -444,10 +444,7 @@ class Sample extends Page
                 $having .= ' HAVING count(dc.datacollectionid) = 0';
             }
 
-<<<<<<< HEAD:api/src/Page/Sample.php
             $this->db->wait_rep_sync(true);
-=======
->>>>>>> nwilson/migrate/notebook:api/src/pages/Sample.php
             $subs = $this->db->pq("SELECT pr.acronym as protein, s.name as sample, dp.experimentkind, dp.preferredbeamsizex, dp.preferredbeamsizey, round(dp.exposuretime,6) as exposuretime, dp.requiredresolution, dp.boxsizex, dp.boxsizey, dp.monochromator, dp.axisstart, dp.axisrange, dp.numberofimages, dp.transmission, dp.energy, count(sss.blsampleid) as samples, s.location, ss.diffractionplanid, pr.proteinid, ss.blsubsampleid, ss.blsampleid, ss.comments, ss.positionid, po.posx as x, po.posy as y, po.posz as z, po2.posx as x2, po2.posy as y2, po2.posz as z2, IF(cqs.containerqueuesampleid IS NOT NULL AND cqs.containerqueueid IS NULL, 1, 0) as readyforqueue, cq.containerqueueid, count(distinct IF(dc.overlap != 0,dc.datacollectionid,NULL)) as sc, count(distinct IF(dc.overlap = 0 AND dc.axisrange = 0,dc.datacollectionid,NULL)) as gr, count(distinct IF(dc.overlap = 0 AND dc.axisrange > 0,dc.datacollectionid,NULL)) as dc, count(distinct so.screeningid) as ai, count(distinct app.autoprocprogramid) as ap, round(min(st.rankingresolution),2) as scresolution, max(ssw.completeness) as sccompleteness, round(min(apss.resolutionlimithigh),2) as dcresolution, round(max(apss.completeness),1) as dccompleteness, cq2.completedtimestamp as queuecompleted
               FROM blsubsample ss
               LEFT OUTER JOIN position po ON po.positionid = ss.positionid
@@ -990,11 +987,7 @@ class Sample extends Page
                 else $a[$f] = $this->has_arg($f) ? $this->arg($f) : '';
             }
 
-<<<<<<< HEAD:api/src/Page/Sample.php
             foreach (array('CENTRINGMETHOD', 'EXPERIMENTKIND', 'RADIATIONSENSITIVITY', 'SCREENCOMPONENTGROUPID', 'BLSUBSAMPLEID', 'COMPONENTIDS', 'COMPONENTAMOUNTS', 'REQUIREDRESOLUTION', 'CELL_A', 'CELL_B', 'CELL_C', 'CELL_ALPHA', 'CELL_BETA', 'CELL_GAMMA', 'VOLUME', 'ABUNDANCE', 'PACKINGFRACTION', 'DIMENSION1', 'DIMENSION2', 'DIMENSION3', 'SHAPE', 'THEORETICALDENSITY', 'LOOPTYPE', 'ENERGY') as $f) {
-=======
-            foreach (array('SCREENCOMPONENTGROUPID', 'BLSUBSAMPLEID', 'COMPONENTIDS', 'COMPONENTAMOUNTS', 'REQUIREDRESOLUTION', 'CELL_A', 'CELL_B', 'CELL_C', 'CELL_ALPHA', 'CELL_BETA', 'CELL_GAMMA', 'VOLUME', 'ABUNDANCE', 'PACKINGFRACTION', 'DIMENSION1', 'DIMENSION2', 'DIMENSION3', 'SHAPE', 'THEORETICALDENSITY', 'LOOPTYPE', 'ENERGY') as $f) {
->>>>>>> nwilson/migrate/notebook:api/src/pages/Sample.php
                 if ($s) $a[$f] = array_key_exists($f, $s) ? $s[$f] : null;
                 else $a[$f] = $this->has_arg($f) ? $this->arg($f) : null;
             }
@@ -1891,7 +1884,3 @@ class Sample extends Page
             $this->_output(new \stdClass);
         }
 }
-<<<<<<< HEAD:api/src/Page/Sample.php
-
-=======
->>>>>>> nwilson/migrate/notebook:api/src/pages/Sample.php

@@ -62,11 +62,8 @@ class Process extends Page
                 array_push($args, $this->arg('VISIT'));
             }
 
-<<<<<<< HEAD:api/src/Page/Process.php
             if (!$this->has_arg('AUTOMATIC')) $where .= " AND rp.automatic!=1";
 
-=======
->>>>>>> nwilson/migrate/notebook:api/src/pages/Process.php
 
             $tot = $this->db->pq("SELECT count(distinct rp.processingjobid) as tot, sum(IF(app.processingstatus IS NULL, 1, 0)) as running, sum(IF(app.autoprocprogramid IS NULL, 1, 0)) as waiting
                 FROM processingjob rp
@@ -345,7 +342,6 @@ class Process extends Page
 
     function _enqueue()
     {
-<<<<<<< HEAD:api/src/Page/Process.php
         global $zocalo_server,
                $zocalo_username,
                $zocalo_password,
@@ -357,12 +353,6 @@ class Process extends Page
             error_log($message);
             $this->_error($message, 500);
         }
-=======
-        global $activemq_server,
-               $activemq_rp_queue;
-
-        if (!$activemq_server || !$activemq_rp_queue) return;
->>>>>>> nwilson/migrate/notebook:api/src/pages/Process.php
 
         if (!$this->has_arg('PROCESSINGJOBID')) $this->_error('No processing job specified');
 
@@ -374,7 +364,6 @@ class Process extends Page
                 WHERE p.proposalid = :1 AND rp.processingjobid = :2", array($this->proposalid, $this->arg('PROCESSINGJOBID')));
 
         if (!sizeof($chk)) $this->_error('No such processing job');
-<<<<<<< HEAD:api/src/Page/Process.php
 
         // Send job to processing queue
 
@@ -392,25 +381,5 @@ class Process extends Page
         }
 
         $this->_output(new \stdClass);
-=======
-
-        // Send job to processing queue
-
-        $message = array(
-            'parameters' => array(
-                'ispyb_process' => intval($this->arg('PROCESSINGJOBID')),
-            )
-        );
-
-        $this->queue = new Queue();
-
-        try {
-            $this->queue->send($activemq_server, null, null, $activemq_rp_queue, $message, true);
-        } catch (Exception $e) {
-            $this->_error($e->getMessage());
-        }
-
-        $this->_output(new stdClass);
->>>>>>> nwilson/migrate/notebook:api/src/pages/Process.php
     }
 }
