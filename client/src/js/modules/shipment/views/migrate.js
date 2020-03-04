@@ -16,15 +16,12 @@ define(['marionette',
         template: template,
         className: 'content',
 
-<<<<<<< HEAD
         templateHelpers: function() {
             return {
                 proposal: app.prop
             }
         },
 
-=======
->>>>>>> nwilson/migrate/notebook
         regions: {
             rprots: '.rproteins',
             rconts: '.rcontacts',
@@ -87,11 +84,7 @@ define(['marionette',
                     patch: true,
                     success: function() {
                         app.alert({ message: 'Dewar successfully migrated to: '+p.get('PROPOSAL') })
-<<<<<<< HEAD
                         // self.reset()
-=======
-                        self.reset()
->>>>>>> nwilson/migrate/notebook
                         self.dewars.fetch()
                     }, 
 

@@ -7,11 +7,7 @@ define([
 ) {
     let Router = Marionette.AppRouter.extend({
         appRoutes: {
-<<<<<<< HEAD
             'em/process/scipion/visit/:visit_str': 'scipion',
-=======
-            'em/process/visit/:visit_str': 'scipion',
->>>>>>> nwilson/migrate/notebook
         }
     });
 

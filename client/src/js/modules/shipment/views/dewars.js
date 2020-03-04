@@ -149,10 +149,7 @@ define(['marionette', 'backbone',
             if (options.childTemplate) this.options.childViewOptions.template = options.childTemplate
 
             this.regdewars = new DewarRegistry()
-<<<<<<< HEAD:client/src/js/modules/shipment/views/dewars.js
             this.regdewars.state.pageSize = 9999
-=======
->>>>>>> nwilson/migrate/notebook:client/js/modules/shipment/views/dewars.js
             this.regdewars.fetch()
         },
         

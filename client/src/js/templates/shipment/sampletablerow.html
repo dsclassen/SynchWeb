@@ -2,7 +2,6 @@
     <td><%-LOCATION%></td>
     <% if (PROTEINID == -1) { %>
     <td colspan="5">&nbsp;</td>
-<<<<<<< HEAD:client/src/js/templates/shipment/sampletablerow.html
     <td class="non-xtal" colspan="1">&nbsp;</td>
     <td class="xtal" colspan="1">&nbsp;</td>
     <td class="extra" colspan="3">&nbsp;</td>
@@ -29,38 +28,14 @@
     <td class="requiredresolution xtal"><%-REQUIREDRESOLUTION%></td>
 
     <td class="abundance extra">
-=======
-    <td class="xtal" colspan="2">&nbsp;</td>
-    <td class="non-xtal" colspan="1">&nbsp;</td>
-    <td class="extra" colspan="4">&nbsp;</td>
-    <td class="auto" colspan="4">&nbsp;</td>
-
-    <% } else { %>
-
-    <td><%-ACRONYM%></td>
-    <td><%-NAME%></td>
-    <td class="xtal"><%-SPACEGROUP %></td>
-    <td class="xtal"><%-CODE%></td>
-    <td class="non-xtal"><%-VOLUME%></td>
-    <td><%-COMMENTS%></td>
-    <td><%-ANOMALOUSSCATTERER%></td>
-
-    <td class="extra">
->>>>>>> nwilson/migrate/notebook:client/js/templates/shipment/sampletablerow.html
         <% if (ABUNDANCE) { %>
             <%-ABUNDANCE%><%-SYMBOL%>
         <% } %>    
     </td>
     <td class="extra components"></td>
-<<<<<<< HEAD:client/src/js/templates/shipment/sampletablerow.html
     
     <td class="unitcell extra">
         <table class="reflow unitcell">      
-=======
-    <td class="extra"><%-REQUIREDRESOLUTION%></td>
-    <td class="extra">
-        <table class="reflow cell">      
->>>>>>> nwilson/migrate/notebook:client/js/templates/shipment/sampletablerow.html
             <thead>            
                 <tr>
                     <th>A</th>

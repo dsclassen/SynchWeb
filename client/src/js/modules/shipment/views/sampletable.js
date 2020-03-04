@@ -211,15 +211,11 @@ define(['marionette',
                 select: this.selectGlobalProtein.bind(this)
             })
 
-<<<<<<< HEAD:client/src/js/modules/shipment/views/sampletable.js
             if (this.getOption('auto').show) {
                 this.$el.find('.auto').addClass('show')
                 this.$el.find('.auto-extra').addClass('extra').removeClass('show')
                 if (this.getOption('extra').show) this.$el.find('.auto-extra').addClass('show')
             }
-=======
-            if (this.getOption('auto').show) this.$el.find('.auto').addClass('show')
->>>>>>> nwilson/migrate/notebook:client/js/modules/shipment/views/sampletable.js
             this.$el.find('[name=CENTRINGMETHOD]').html(CM.opts()).val(this.model.get('CENTRINGMETHOD'))
             this.$el.find('[name=EXPERIMENTKIND]').html(EXP.opts()).val(this.model.get('EXPERIMENTKIND'))
             this.$el.find('[name=ENERGY]').val(this.model.get('ENERGY'))
@@ -386,7 +382,6 @@ define(['marionette',
 
         toggleAuto: function(val) {
             this.auto.show = val
-<<<<<<< HEAD:client/src/js/modules/shipment/views/sampletable.js
             if (val) {
                 this.$el.find('.auto').addClass('show')
                 this.$el.find('.auto-extra').addClass('extra').removeClass('show')
@@ -394,10 +389,6 @@ define(['marionette',
                 this.$el.find('.auto').removeClass('show')
                 this.$el.find('.auto-extra').removeClass('extra').addClass('show')
             }
-=======
-            if (val) this.$el.find('.auto').addClass('show')
-            else this.$el.find('.auto').removeClass('show')
->>>>>>> nwilson/migrate/notebook:client/js/modules/shipment/views/sampletable.js
         },
 
 
