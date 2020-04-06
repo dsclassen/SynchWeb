@@ -28,7 +28,7 @@ module.exports = {
     proxy: {
       '/api': {
         // Change this target to where SynchWeb server is running
-        target: 'http://192.168.33.10',
+        target: 'http://192.168.1.38',
         // Intercept the request and add auth header
         onProxyReq: function(proxyReq, req, res) {
           if (req.headers.authorization) {
@@ -218,13 +218,13 @@ module.exports = {
     // }),
     // This builds an index.php file from the src template
     new HtmlWebpackPlugin({
-      title: 'SynchWeb Webpack',
+      title: 'SynchWeb Webpack1',
       filename: path.resolve(__dirname, 'index.php'),
       template: 'src/index.php',
       jsonConfig: config,
     }),
     new HtmlWebpackPlugin({
-      title: 'SynchWeb Webpack',
+      title: 'SynchWeb Webpack2',
       filename: path.resolve(__dirname, 'dist/', gitHash, 'index.html'),
       template: 'src/index.php',
       jsonConfig: config,
