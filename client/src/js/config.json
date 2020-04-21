@@ -1,7 +1,7 @@
 {
-	"apiurl": "/api",
+	"apiurl": "/client/api",
 
-	"appurl": "",
+	"appurl": "/client",
 
 	"production": false,
 
@@ -23,7 +23,7 @@
 
     "ga_ident": "",
 
-    "site_name": "my site",
-    "site_link": "https://www.mysite.com",
+    "site_name": "ALS ENABLE",
+    "site_link": "https://ispyb.als.lbl.gov",
     "site_image": "diamond_gs_small.png"
 }
