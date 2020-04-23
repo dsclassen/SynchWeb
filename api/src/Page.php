@@ -672,7 +672,7 @@ class Page
                     $v = $vs->structMem('value')->arrayMem(0)->scalarVal();
                     $t = $vs->structMem('secs')->scalarVal()-3600;
                     
-                    $inputTZ = new \DateTimeZone('Europe/London');
+                    $inputTZ = new \DateTimeZone('America/Los_Angeles');
                     $transitions = $inputTZ->getTransitions($t, $t);
                     if ($transitions[0]['isdst']) $t += 3600;
                     

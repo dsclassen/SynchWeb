@@ -24,7 +24,7 @@
  * Stu Fisher, 2016/03/15 - Initial Implementation
  */
 
-date_default_timezone_set('Europe/London');
+date_default_timezone_set('America/Los_Angeles');
 
 // Return if theres no config
 if (!file_exists('config.php')) exit;
