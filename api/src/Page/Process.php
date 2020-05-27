@@ -28,6 +28,9 @@ class Process extends Page
             'RECIPE' => '([\w-])+',
 
             'ids' => '\d+', 
+            'pipelinestatus' => '([\w\s-])+',
+            'category' => '([\w\s-])+',
+            'discipline' => '([\w\s-])+',
         );
         
 
@@ -42,6 +45,8 @@ class Process extends Page
             array('/sweeps', 'post', '_add_reprocessing_sweeps'),
 
             array('/enqueue', 'post', '_enqueue'),
+
+            array('/pipelines', 'get', '_pipelines'),
         );
 
 
@@ -69,7 +74,8 @@ class Process extends Page
                 FROM processingjob rp
                 LEFT OUTER JOIN autoprocprogram app ON app.processingjobid = rp.processingjobid
                 INNER JOIN datacollection dc ON dc.datacollectionid = rp.datacollectionid
-                INNER JOIN blsession s ON s.sessionid = dc.sessionid
+                INNER JOIN datacollectiongroup dcg ON dcg.datacollectiongroupid = dc.datacollectiongroupid
+                INNER JOIN blsession s ON s.sessionid = dcg.sessionid
                 INNER JOIN proposal p ON p.proposalid = s.proposalid
                 WHERE $where", $args);
             $tot = $tot[0];
@@ -102,7 +108,8 @@ class Process extends Page
                 LEFT OUTER JOIN blsample smp ON smp.blsampleid = dc.blsampleid
                 LEFT OUTER JOIN crystal cr ON cr.crystalid = smp.crystalid
                 LEFT OUTER JOIN protein pr ON pr.proteinid = cr.proteinid
-                INNER JOIN blsession s ON s.sessionid = dc.sessionid
+                INNER JOIN datacollectiongroup dcg ON dcg.datacollectiongroupid = dc.datacollectiongroupid
+                INNER JOIN blsession s ON s.sessionid = dcg.sessionid
                 INNER JOIN proposal p ON p.proposalid = s.proposalid
 
                 LEFT OUTER JOIN autoprocprogram app ON app.processingjobid = rp.processingjobid
@@ -134,7 +141,8 @@ class Process extends Page
 
             $chk = $this->db->pq("SELECT dc.datacollectionid
                 FROM datacollection dc
-                INNER JOIN blsession s ON dc.sessionid = s.sessionid
+                INNER JOIN datacollectiongroup dcg ON dcg.datacollectiongroupid = dc.datacollectiongroupid
+                INNER JOIN blsession s ON s.sessionid = dcg.sessionid
                 INNER JOIN proposal p ON p.proposalid = s.proposalid
                 WHERE p.proposalid = :1 AND dc.datacollectionid = :2", array($this->proposalid, $this->arg('DATACOLLECTIONID')));
 
@@ -186,7 +194,8 @@ class Process extends Page
                 FROM processingjobparameter rpp
                 INNER JOIN processingjob rp ON rp.processingjobid = rpp.processingjobid
                 INNER JOIN datacollection dc ON dc.datacollectionid = rp.datacollectionid
-                INNER JOIN blsession s ON s.sessionid = dc.sessionid
+                INNER JOIN datacollectiongroup dcg ON dcg.datacollectiongroupid = dc.datacollectiongroupid
+                INNER JOIN blsession s ON s.sessionid = dcg.sessionid
                 INNER JOIN proposal p ON p.proposalid = s.proposalid
                 WHERE $where", $args);
 
@@ -223,7 +232,8 @@ class Process extends Page
             $chk = $this->db->pq("SELECT rp.processingjobid
                 FROM processingjob rp
                 INNER JOIN datacollection dc ON dc.datacollectionid = rp.datacollectionid
-                INNER JOIN blsession s ON dc.sessionid = s.sessionid
+                INNER JOIN datacollectiongroup dcg ON dcg.datacollectiongroupid = dc.datacollectiongroupid
+                INNER JOIN blsession s ON s.sessionid = dcg.sessionid
                 INNER JOIN proposal p ON p.proposalid = s.proposalid
                 WHERE p.proposalid = :1 AND rp.processingjobid = :2", array($this->proposalid, $param['PROCESSINGJOBID']));
 
@@ -278,7 +288,8 @@ class Process extends Page
                 LEFT OUTER JOIN blsample smp ON smp.blsampleid = dc.blsampleid
                 LEFT OUTER JOIN crystal cr ON cr.crystalid = smp.crystalid
                 LEFT OUTER JOIN protein pr ON pr.proteinid = cr.proteinid
-                INNER JOIN blsession s ON s.sessionid = dc.sessionid
+                INNER JOIN datacollectiongroup dcg ON dcg.datacollectiongroupid = dc.datacollectiongroupid
+                INNER JOIN blsession s ON s.sessionid = dcg.sessionid
                 INNER JOIN proposal p ON p.proposalid = s.proposalid
                 WHERE $where", $args);
 
@@ -321,7 +332,8 @@ class Process extends Page
             $chk = $this->db->pq("SELECT rp.processingjobid
                 FROM processingjob rp
                 INNER JOIN datacollection dc ON dc.datacollectionid = rp.datacollectionid
-                INNER JOIN blsession s ON dc.sessionid = s.sessionid
+                INNER JOIN datacollectiongroup dcg ON dcg.datacollectiongroupid = dc.datacollectiongroupid
+                INNER JOIN blsession s ON s.sessionid = dcg.sessionid
                 INNER JOIN proposal p ON p.proposalid = s.proposalid
                 WHERE p.proposalid = :1 AND rp.processingjobid = :2", array($this->proposalid, $args['PROCESSINGJOBID']));
 
@@ -329,7 +341,8 @@ class Process extends Page
 
             $chk = $this->db->pq("SELECT dc.datacollectionid
                 FROM datacollection dc
-                INNER JOIN blsession s ON dc.sessionid = s.sessionid
+                INNER JOIN datacollectiongroup dcg ON dcg.datacollectiongroupid = dc.datacollectiongroupid
+                INNER JOIN blsession s ON s.sessionid = dcg.sessionid
                 INNER JOIN proposal p ON p.proposalid = s.proposalid
                 WHERE p.proposalid = :1 AND dc.datacollectionid = :2", array($this->proposalid, $args['DATACOLLECTIONID']));
 
@@ -359,7 +372,8 @@ class Process extends Page
         $chk = $this->db->pq("SELECT rp.processingjobid
                 FROM processingjob rp
                 INNER JOIN datacollection dc ON dc.datacollectionid = rp.datacollectionid
-                INNER JOIN blsession s ON dc.sessionid = s.sessionid
+                INNER JOIN datacollectiongroup dcg ON dcg.datacollectiongroupid = dc.datacollectiongroupid
+                INNER JOIN blsession s ON s.sessionid = dcg.sessionid
                 INNER JOIN proposal p ON p.proposalid = s.proposalid
                 WHERE p.proposalid = :1 AND rp.processingjobid = :2", array($this->proposalid, $this->arg('PROCESSINGJOBID')));
 
@@ -381,5 +395,45 @@ class Process extends Page
         }
 
         $this->_output(new \stdClass);
+    }
+
+    /*
+    * Controller method for /process/pipelines
+    * Returns list of processing pipelines that meet query parameters
+    * Supported query parameters:
+    *     discipline (MX, CryoEM etc),
+    *     category (processing, post processing)
+    *     pipelinestatus (automatic, optional, deprecated)
+    */
+    function _pipelines() {
+        // By default return all processing pipelines for a given discipline.
+        // Filters can be used to return pipelines with a specific status and category
+        $discipline = $this->has_arg('discipline') ? $this->arg('discipline') : 'MX';
+
+        $where = 'pp.discipline=:1';
+        $args = array($discipline);
+
+        $status = $this->has_arg('pipelinestatus') ? $this->arg('pipelinestatus') : null;
+        $category = $this->has_arg('category') ? $this->arg('category') : null;
+
+        if ($status) {
+            $where .= ' AND pp.pipelinestatus=:'.(sizeof($args)+1);
+            array_push($args, $this->arg('pipelinestatus'));
+        }
+        if ($category) {
+            $where .= ' AND ppc.name=:'.(sizeof($args)+1);
+            array_push($args, $this->arg('category'));
+        }
+
+        // Make the actual query based on our filters
+        $rows = $this->db->pq("SELECT pp.name, pp.processingpipelineid
+            FROM processingpipeline pp
+            INNER JOIN processingpipelinecategory ppc ON ppc.processingpipelinecategoryid = pp.processingpipelinecategoryid
+            WHERE $where", $args);
+
+        $total = count($rows);
+        $retVal = array('total' => $total,
+                        'data' => $rows);
+        $this->_output($retVal);
     }
 }
