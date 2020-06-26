@@ -120,7 +120,10 @@ class Sample extends Page
                               'nodata' => '\d',
                               'notcompleted' => '\d',
 
-                              'externalid' => '\d',
+                               // external is a flag to indicate this protein/sample has a user office system id
+                               // whereas externalid is the actual reference
+                              'external' => '\d',
+                              'EXTERNALID' => '\w+',
 
                               'COMPONENTLATTICEID' => '\d+',
 
@@ -273,7 +276,8 @@ class Sample extends Page
 
             // ADD BLSAMPLES
             $blSamples = array();
-            $maxLocation = $this->db->pq("SELECT IFNULL((SELECT location FROM blsample WHERE containerid =:1 ORDER BY location * 1 DESC LIMIT 1),0) as location", array($ids['CONTAINERID']))[0]['LOCATION'];
+            $maxloc_tmp = $this->db->pq("SELECT IFNULL((SELECT location FROM blsample WHERE containerid =:1 ORDER BY location * 1 DESC LIMIT 1),0) as location", array($ids['CONTAINERID']));
+            $maxLocation = $maxloc_tmp[0]['LOCATION'];
             
             if(array_key_exists('CAPILLARYID', $ids) && $capillary->CRYSTALID == null && !$capillary->CONTAINERLESS)
                 $blSamples['capillary'] = array('CONTAINERID' => $ids['CONTAINERID'], 'CRYSTALID' => $ids['CAPILLARYID'], 'PROTEINID' => $ids['CAPILLARYPHASEID'], 'LOCATION' => ++$maxLocation, 'NAME' => $capillary->NAME, 'PACKINGFRACTION' => $this->has_arg('PACKINGFRACTION') ? $this->arg('PACKINGFRACTION') : null, 'COMMENTS' => array_key_exists('COMMENTS', $capillary) ? $capillary->COMMENTS : '', 'DIMENSION1' => $capillary->OUTERDIAMETER, 'DIMENSION2' => $capillary->INNERDIAMETER, 'DIMENSION3' => $capillary->LENGTH, 'SHAPE' => $capillary->SHAPE, 'LOOPTYPE' => 1);
@@ -317,7 +321,8 @@ class Sample extends Page
                 $ids['SAMPLEGROUPID'] = $this->db->id();
 
                 if(!array_key_exists('BLSAMPLECAPILLARYID', $ids)){
-                    $ids['BLSAMPLECAPILLARYID'] = $this->db->pq("SELECT blsampleid FROM blsample where crystalid = :1", array($capillary->CRYSTALID))[0]['BLSAMPLEID'];
+                    $tmp_id = $this->db->pq("SELECT blsampleid FROM blsample where crystalid = :1", array($capillary->CRYSTALID));
+                    $ids['BLSAMPLECAPILLARYID'] = $tmp_id[0]['BLSAMPLEID'];
                 }
 
                 $this->db->pq("INSERT INTO blsamplegroup_has_blsample (blsampleid, blsamplegroupid, grouporder, type) 
@@ -1074,7 +1079,7 @@ class Sample extends Page
                 array_push($args, $this->arg('type'));
             }
 
-            if ($this->has_arg('externalid')) {
+            if ($this->has_arg('external')) {
                 $where .= ' AND pr.externalid IS NOT NULL';
             }
             
@@ -1113,7 +1118,7 @@ class Sample extends Page
                 if (array_key_exists($this->arg('sort_by'), $cols)) $order = $cols[$this->arg('sort_by')].' '.$dir;
             }
             
-            $rows = $this->db->paginate("SELECT /*distinct*/ $extc pr.concentrationtypeid, ct.symbol as concentrationtype, pr.componenttypeid, cmt.name as componenttype, CASE WHEN sequence IS NULL THEN 'No' ELSE 'Yes' END as hasseq, pr.proteinid, CONCAT(p.proposalcode,p.proposalnumber) as prop, pr.name,pr.acronym,pr.molecularmass,pr.global, IF(pr.externalid IS NOT NULL, 1, 0) as external, pr.density, count(php.proteinid) as pdbs
+            $rows = $this->db->paginate("SELECT /*distinct*/ $extc pr.concentrationtypeid, ct.symbol as concentrationtype, pr.componenttypeid, cmt.name as componenttype, CASE WHEN sequence IS NULL THEN 'No' ELSE 'Yes' END as hasseq, pr.proteinid, CONCAT(p.proposalcode,p.proposalnumber) as prop, pr.name,pr.acronym,pr.molecularmass,pr.global, IF(pr.externalid IS NOT NULL, 1, 0) as external, HEX(pr.externalid) as externalid, pr.density, count(php.proteinid) as pdbs
               /*,  count(distinct b.blsampleid) as scount, count(distinct dc.datacollectionid) as dcount*/ 
                                   FROM protein pr
                                   LEFT OUTER JOIN concentrationtype ct ON ct.concentrationtypeid = pr.concentrationtypeid
@@ -1184,7 +1189,7 @@ class Sample extends Page
                 $where = '(pr.proposalid=:1 OR pr.global=1)';
             }
 
-            if ($this->has_arg('externalid')) {
+            if ($this->has_arg('external')) {
                 $where .= ' AND pr.externalid IS NOT NULL';
             }
 
@@ -1376,14 +1381,15 @@ class Sample extends Page
             $cmt = $this->has_arg('COMPONENTTYPEID') ? $this->arg('COMPONENTTYPEID') : null;
             $global = $this->has_arg('GLOBAL') ? $this->arg('GLOBAL') : null;
             $density = $this->has_arg('DENSITY') ? $this->arg('DENSITY') : null;
+            $externalid = $this->has_arg('EXTERNALID') ? $this->arg('EXTERNALID') : null;
             
             $chk = $this->db->pq("SELECT proteinid FROM protein
               WHERE proposalid=:1 AND acronym=:2", array($this->proposalid, $this->arg('ACRONYM')));
             if (sizeof($chk)) $this->_error('That protein acronym already exists in this proposal');
 
-            $this->db->pq('INSERT INTO protein (proteinid,proposalid,name,acronym,sequence,molecularmass,bltimestamp,concentrationtypeid,componenttypeid,global,density) 
-              VALUES (s_protein.nextval,:1,:2,:3,:4,:5,CURRENT_TIMESTAMP,:6,:7,:8,:9) RETURNING proteinid INTO :id',
-              array($this->proposalid, $name, $this->arg('ACRONYM'), $seq, $mass, $ct, $cmt, $global, $density));
+            $this->db->pq('INSERT INTO protein (proteinid,proposalid,name,acronym,sequence,molecularmass,bltimestamp,concentrationtypeid,componenttypeid,global,density, externalid)
+              VALUES (s_protein.nextval,:1,:2,:3,:4,:5,CURRENT_TIMESTAMP,:6,:7,:8,:9,UNHEX(:10)) RETURNING proteinid INTO :id',
+              array($this->proposalid, $name, $this->arg('ACRONYM'), $seq, $mass, $ct, $cmt, $global, $density, $externalid));
             
             $pid = $this->db->id();
             

@@ -25,7 +25,11 @@ require 'vendor/autoload.php';
 
 require 'config.php';
 
+<<<<<<< HEAD
 date_default_timezone_set('America/Los_Angeles');
+=======
+date_default_timezone_set($timezone);
+>>>>>>> dccb06c572148b5776d06db908c019b57aa923b7
 
 session_cache_limiter(false);
 
@@ -48,9 +52,9 @@ $app->configureMode('development', function () use ($app) {
 });
 
 $app->get('/options', function () use ($app) {
-    global $motd, $authentication_type, $cas_url, $cas_sso, $package_description, $facility_courier_countries, $facility_courier_countries_nde, $dhl_enable, $dhl_link, $scale_grid, $preset_proposal, $ap_statuses;
+    global $motd, $authentication_type, $cas_url, $cas_sso, $package_description, $facility_courier_countries, $facility_courier_countries_nde, $dhl_enable, $dhl_link, $scale_grid, $preset_proposal, $ap_statuses, $timezone;
     $app->contentType('application/json');
-    $app->response()->body(json_encode(array('motd' => $motd, 'authentication_type' => $authentication_type, 'cas_url' => $cas_url, 'cas_sso' => $cas_sso, 'package_description' => $package_description, 'facility_courier_countries' => $facility_courier_countries, 'facility_courier_countries_nde' => $facility_courier_countries_nde, 'dhl_enable' => $dhl_enable, 'dhl_link' => $dhl_link, 'scale_grid' => $scale_grid, 'preset_proposal' => $preset_proposal, 'ap_statuses' => $ap_statuses['types'])));
+    $app->response()->body(json_encode(array('motd' => $motd, 'authentication_type' => $authentication_type, 'cas_url' => $cas_url, 'cas_sso' => $cas_sso, 'package_description' => $package_description, 'facility_courier_countries' => $facility_courier_countries, 'facility_courier_countries_nde' => $facility_courier_countries_nde, 'dhl_enable' => $dhl_enable, 'dhl_link' => $dhl_link, 'scale_grid' => $scale_grid, 'preset_proposal' => $preset_proposal, 'ap_statuses' => $ap_statuses['types'], 'timezone' => $timezone)));
     // $app->response()->body(json_encode($options->ui()));
 });
 
