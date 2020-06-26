@@ -25,11 +25,7 @@ require 'vendor/autoload.php';
 
 require 'config.php';
 
-<<<<<<< HEAD
-date_default_timezone_set('America/Los_Angeles');
-=======
 date_default_timezone_set($timezone);
->>>>>>> dccb06c572148b5776d06db908c019b57aa923b7
 
 session_cache_limiter(false);
 
