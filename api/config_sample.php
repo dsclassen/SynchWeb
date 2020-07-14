@@ -199,7 +199,7 @@
 
     # These idents are used when searching the RCSB for PDBs to generate PDB stats
     $facility_pdb_ident = array('DIAMOND BEAMLINE', 'DIAMOND LIGHT SOURCE BEAMLINE');
-
+    $facility_pdb_site = 'DIAMOND';
 
     # Shipping Address for Labels
     # - This is added to all shipment label PDFs
@@ -265,7 +265,8 @@
     $auto = array('123.456.789.1');
     $auto_bls = array('i03', 'i04');
 
-
+    # Commissioning Proposal Type
+    $commissioning_code = 'cm';
 
     # Proposal to store beamline presets in
     $preset_proposal = 'cm12345';
