@@ -17,11 +17,13 @@ define(['marionette',
         'utils/experimentkinds',
         'utils/radiationsensitivity',
         'utils',
+
+        'utils/safetylevel',
     
         'jquery',
         ], function(Marionette, Protein, Proteins, ValidatedRow, DistinctProteins, ComponentsView,
         sampletable, sampletablerow, sampletablerowedit, 
-        forms, SG, Anom, CM, EXP, RS, utils, $) {
+        forms, SG, Anom, CM, EXP, RS, utils, safetyLevel, $) {
 
         
     // A Sample Row
@@ -124,7 +126,7 @@ define(['marionette',
                 var name_regexp = new RegExp(name_base)
                 var similar = this.model.collection.filter(function(m) { return m.get('NAME').match(name_regexp) })
                 var number_suffix = []
-                if (similar.length) number_suffix = similar[similar.length-1].get('NAME').match(/\d+$/)
+                if (similar.length) number_suffix = similar[similar.length-1].get('NAME').match(/\d+$/) || 0
 
                 var number_pad = number_suffix.length > 0 ? number_suffix[0].length : 0
                 number_suffix = number_suffix.length > 0 ? parseInt(number_suffix[0]) : 1
@@ -301,13 +303,18 @@ define(['marionette',
         
         updateProteins: function() {
             this.$el.find('select[name=PROTEINID]').html(this.proteins.opts({
-                addClass: 'active',
-                classProperty: 'EXTERNAL',
-                classPropertyValue: '1',
+                // addClass: 'active',
+                // classProperty: 'EXTERNAL',
+                // classPropertyValue: '1',
+                callback: this.handleSafetyLevel
             }))
             this.$el.find('select[name=PROTEINID]').combobox('value', this.model.get('PROTEINID'))
         },
-    
+        // Callback to style individual proteins within combobox
+        // Not sure if this will stay due to conflicts with validation colours.
+        handleSafetyLevel: function(m) {
+            return safetyLevel(m)
+        }    
     }))
     
            
