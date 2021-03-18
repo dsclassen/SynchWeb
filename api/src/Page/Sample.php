@@ -15,7 +15,7 @@ class Sample extends Page
                               's' => '\w+',
 
 
-                              'prop' => '\w\w\d+',
+                              'prop' => '\w+\d+',
                               'term' => '\w+',
                               'pid' => '\d+',
                               'sid' => '\d+',
@@ -43,6 +43,8 @@ class Sample extends Page
                               'capillary' => '',
                               'capillaryPhase' => '',
                               'json' => '',
+
+                              'collected_during' => '\w+\d+-\d+',
 
                               'DEWARID' => '\d+',
                               'PROTEINID' => '\d+',
@@ -851,6 +853,22 @@ class Sample extends Page
                 $sseq = 'pr.sequence,';
             }
             
+            # Collected during visit
+            if ($this->has_arg('collected_during')) {
+              $visit = $this->db->pq("SELECT s.sessionid
+                FROM blsession s
+                INNER JOIN proposal p ON p.proposalid = s.proposalid
+                WHERE CONCAT(p.proposalcode, p.proposalnumber, '-', s.visit_number) LIKE :1 AND p.proposalid=:2",
+                array($this->arg('collected_during'), $this->proposalid));
+
+              if (!sizeof($visit)) $this->_error("No such visit");
+              $sessionid = $visit[0]["SESSIONID"];
+
+              $join .= " LEFT OUTER JOIN datacollectiongroup dcg ON dcg.datacollectiongroupid = dc.datacollectiongroupid";
+              $where .= " AND (r.blsessionid=:".(sizeof($args)+1)." OR dcg.sessionid=:".(sizeof($args)+2).")";
+              array_push($args, $sessionid);
+              array_push($args, $sessionid);
+            }
             
             // Search
             if ($this->has_arg('s')) {
@@ -881,7 +899,10 @@ class Sample extends Page
               LEFT OUTER JOIN blsampletype_has_component chc ON b.crystalid = chc.blsampletypeid
               INNER JOIN proposal p ON p.proposalid = pr.proposalid 
               INNER JOIN container c ON c.containerid = b.containerid 
-              INNER JOIN dewar d ON d.dewarid = c.dewarid $join WHERE $where", $args);
+              INNER JOIN dewar d ON d.dewarid = c.dewarid 
+              LEFT OUTER JOIN datacollection dc ON b.blsampleid = dc.blsampleid
+              LEFT OUTER JOIN robotaction r ON r.blsampleid = b.blsampleid AND r.actiontype = 'LOAD'
+              $join WHERE $where", $args);
             $tot = intval($tot[0]['TOT']);
 
             
@@ -928,7 +949,6 @@ class Sample extends Page
                                   INNER JOIN dewar d ON d.dewarid = c.dewarid
                                   INNER JOIN shipping s ON s.shippingid = d.shippingid
                                   INNER JOIN proposal p ON p.proposalid = pr.proposalid
-                                  $join
 
                                   LEFT OUTER JOIN containerqueue cq ON cq.containerid = c.containerid AND cq.completedtimestamp IS NULL
                                   
@@ -953,6 +973,8 @@ class Sample extends Page
                                   
                                   
                                   LEFT OUTER JOIN robotaction r ON r.blsampleid = b.blsampleid AND r.actiontype = 'LOAD'
+                                  
+                                  $join
                                   
                                   WHERE $where
                                   
@@ -1510,6 +1532,7 @@ class Sample extends Page
             $global = $this->has_arg('GLOBAL') ? $this->arg('GLOBAL') : null;
             $density = $this->has_arg('DENSITY') ? $this->arg('DENSITY') : null;
             $externalid = $this->has_arg('EXTERNALID') ? $this->arg('EXTERNALID') : null;
+            $safetyLevel = $this->has_arg('SAFETYLEVEL') ? $this->arg('SAFETYLEVEL') : null;
 
             // Only staff should be able to create Proteins that are not approved (i.e. no EXTERNALID) in User System
             if ($valid_components) {
@@ -1526,9 +1549,9 @@ class Sample extends Page
               WHERE proposalid=:1 AND acronym=:2", array($this->proposalid, $this->arg('ACRONYM')));
             if (sizeof($chk)) $this->_error('That protein acronym already exists in this proposal');
 
-            $this->db->pq('INSERT INTO protein (proteinid,proposalid,name,acronym,sequence,molecularmass,bltimestamp,concentrationtypeid,componenttypeid,global,density, externalid)
-              VALUES (s_protein.nextval,:1,:2,:3,:4,:5,CURRENT_TIMESTAMP,:6,:7,:8,:9,UNHEX(:10)) RETURNING proteinid INTO :id',
-              array($this->proposalid, $name, $this->arg('ACRONYM'), $seq, $mass, $ct, $cmt, $global, $density, $externalid));
+            $this->db->pq('INSERT INTO protein (proteinid,proposalid,name,acronym,sequence,molecularmass,bltimestamp,concentrationtypeid,componenttypeid,global,density,externalid,safetylevel)
+              VALUES (s_protein.nextval,:1,:2,:3,:4,:5,CURRENT_TIMESTAMP,:6,:7,:8,:9,UNHEX(:10),:11) RETURNING proteinid INTO :id',
+              array($this->proposalid, $name, $this->arg('ACRONYM'), $seq, $mass, $ct, $cmt, $global, $density, $externalid, $safetyLevel));
             
             $pid = $this->db->id();
             

@@ -3,6 +3,7 @@
 namespace SynchWeb\Page;
 
 use SynchWeb\Page;
+use SynchWeb\TemplateParser;
 
 class DC extends Page
 {
@@ -374,7 +375,7 @@ class DC extends Page
                     d.numberofpixelsx as detectornumberofpixelsx,
                     d.numberofpixelsy as detectornumberofpixelsy,
                     ses.archived,
-                    dc.rotationaxis
+                    IFNULL(dc.rotationaxis, 'Omega') as rotationaxis
                     ";
                 $groupby = 'GROUP BY smp.name,smp.blsampleid,ses.visit_number,dc.kappastart,dc.phistart, dc.startimagenumber, dc.experimenttype, dc.datacollectiongroupid, dc.runstatus, dc.beamsizeatsamplex, dc.beamsizeatsampley, dc.overlap, dc.flux, dc.imageprefix, dc.datacollectionnumber, dc.filetemplate, dc.datacollectionid, dc.numberofimages, dc.imagedirectory, dc.resolution, dc.exposuretime, dc.axisstart, dc.numberofimages, TO_CHAR(dc.starttime, \'DD-MM-YYYY HH24:MI:SS\'), dc.transmission, dc.axisrange, dc.wavelength, dc.comments, dc.xtalsnapshotfullpath1, dc.xtalsnapshotfullpath2, dc.xtalsnapshotfullpath3, dc.xtalsnapshotfullpath4, dc.starttime, dc.detectordistance, dc.xbeam, dc.ybeam, dc.chistart';
                 // $this->db->set_debug(True);
@@ -424,7 +425,7 @@ class DC extends Page
                     max(d.numberofpixelsx) as detectornumberofpixelsx,
                     max(d.numberofpixelsy) as detectornumberofpixelsy,
                     max(ses.archived) as archived,
-                    max(dc.rotationaxis) as rotationaxis";
+                    IFNULL(max(dc.rotationaxis), 'Omega') as rotationaxis";
                 $groupby = "GROUP BY dc.datacollectiongroupid";
             }
 
@@ -595,6 +596,7 @@ class DC extends Page
         # ------------------------------------------------------------------------
         # Check whether diffraction and snapshot images exist
         function _chk_image() {
+            global $jpeg_thumb_location;
             if (!($this->has_arg('visit') || $this->has_arg('prop'))) $this->_error('No visit or proposal specified');
             
             $where = array();
@@ -620,14 +622,12 @@ class DC extends Page
                 INNER JOIN blsession s ON s.sessionid = dcg.sessionid
                 INNER JOIN proposal p ON p.proposalid = s.proposalid WHERE $where", $ids);
             
-            $this->db->close();
             $this->profile('dc query');
             
             $dcs = array();
             foreach ($dct as $d) $dcs[$d['ID']] = $d;
             
             $out = array();
-            
             foreach ($dcs as $dc) {
                 $debug = array();
 
@@ -636,7 +636,8 @@ class DC extends Page
                 foreach (array('X1', 'X2', 'X3', 'X4') as $j => $im) {
                     array_push($images, file_exists($dc[$im]) ? 1 : 0);
                     if ($im == 'X1') {
-                        $thumb = str_replace('.png', 't.png', $dc[$im]);
+                        $ext = pathinfo($dc[$im], PATHINFO_EXTENSION);
+                        $thumb = str_replace('.'.$ext, 't.'.$ext, $dc[$im]);
                         if ($this->staff && $this->has_arg('debug')) $debug['snapshot_thumb'] = array('file' => $thumb, 'exists' => file_exists($thumb) ? 1 : 0);
                         if (file_exists($thumb)) $sn = 1;
                     }
@@ -646,7 +647,8 @@ class DC extends Page
                 $dc['DIR'] = $this->ads($dc['DIR']);
                 $dc['X'] = $images;
                 
-                $di = str_replace($dc['VIS'], $dc['VIS'].'/jpegs', $dc['DIR']).str_replace(pathinfo($dc['FILETEMPLATE'], PATHINFO_EXTENSION), 'jpeg',preg_replace('/#+/', sprintf('%0'.substr_count($dc['FILETEMPLATE'], '#').'d', $dc['STARTIMAGENUMBER']),$dc['FILETEMPLATE']));
+                $tmp = new TemplateParser($this->db);
+                $di = $tmp->interpolate($jpeg_thumb_location, array('DCID' => $dc['ID']));
                 
                 $this->profile('diffraction image');
                 $die = 0;
@@ -1189,7 +1191,8 @@ class DC extends Page
                     foreach ($r as $k => &$v) {
                         if ($k == 'TYPE') {
                             if ($r['DCCOUNT'] > 1) {
-                                $v = $r['DCCOUNT'].'x multi-'.$v;
+                                $prefix = preg_match('/multi/', $v) ? '' : 'multi-';
+                                $v = $r['DCCOUNT'].'x '.$prefix.$v;
                             }
                         }
 
@@ -1204,7 +1207,9 @@ class DC extends Page
                         if ($k == 'CCANOMALOUS') $v = number_format($v, 1);
 
                         $beam = array('XBEAM', 'YBEAM', 'REFINEDXBEAM', 'REFINEDYBEAM');
-                        if (in_array($k, $beam)) $v = number_format($v, 2);
+                        
+                        // We need to discriminate between NULL values from the database and when the value is a zero
+                        if (in_array($k, $beam) && is_numeric($v)) $v = number_format($v, 2);
                         
                         if ($k == 'AUTOPROCPROGRAMID' || $k == 'SHELL' || $k == 'PROCESSINGJOBID' || $k == 'IMAGESWEEPCOUNT') {
                             continue;
